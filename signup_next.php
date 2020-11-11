@@ -171,8 +171,8 @@
                             echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
-                            saveMemberToDB();
-                            echo "<p>" . $errorMsg . "</p>";
+                            saveMemberToDB(); //Enhancement: Should finish this function before success.
+                            echo "<p>" . $errorMsg . "</p>"; //Change all to console.log afterwards
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>The following input errors were detected:</h3>";

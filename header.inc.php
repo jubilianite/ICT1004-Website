@@ -5,6 +5,23 @@ if ($currentpage == "/" || $currentpage == "/index.php" || $currentpage == "/ind
 } else {
     echo "<header id='header'>"; //Normal header for everything else.
 }
+
+session_start();
+
+if (!(isset($_SESSION['logged_in']))) {
+    $if_loggedin = "<li>
+                    <a href='/login.php' class='button primary'>Login Here!</a>
+                    </li>";
+} else {
+    $if_loggedin = "<li>
+                    <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
+                        <ul>
+                        <li><a href='/profile.php'>Profile</a></li>
+                        <li><a href='/transaction_history.php'>Transaction History</a></li>
+                        <li><a href='/logout.php'>Log Out</a></li>
+                        </ul>
+                    </li>";
+}
 ?>
 
 <h1 id="logo"><a href="index.php">BEST <span>is yet to come</span></a></h1>
@@ -31,12 +48,14 @@ if ($currentpage == "/" || $currentpage == "/index.php" || $currentpage == "/ind
                 -->
             </ul>
         </li>
-        <li><a href="login.php" class="button primary">Login Here!</a>
-            <!--<ul>
-                <li><a href="left-sidebar.html">Left Sidebar</a></li>
-            </ul>-->
-        </li>
+        <?php echo $if_loggedin; ?>
+
+        <!--<ul>
+            <li><a href="left-sidebar.html">Left Sidebar</a></li>
+        </ul>-->
+
 
     </ul>
 </nav>
-</header>
+<!--</header>-->
+<?php echo "</header>"; ?>
