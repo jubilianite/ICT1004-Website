@@ -1,4 +1,5 @@
 <?php
+
 $currentpage = $_SERVER['REQUEST_URI'];
 if ($currentpage == "/" || $currentpage == "/index.php" || $currentpage == "/index" || $currentpage == "") {
     echo "<header id='header' class='alt'>"; // Special Header Effect for index page

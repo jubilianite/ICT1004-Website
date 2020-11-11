@@ -110,7 +110,7 @@
                             $success = false;
                         }
 
-                        //Check Password
+                        //Check Password // Temporarily disabled for convenience
                         //if (!check_password($_POST["password"])) {
                         //    $errorMsg .= "<p>Please input a valid password that contains at least 8 characters, one lower case letter, one upper case letter and one digit.</p>";
                         //    $success = false;
