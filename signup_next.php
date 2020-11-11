@@ -136,7 +136,7 @@
                             // Create database connection.
                             //$config = parse_ini_file('/../../private/dbconfig.ini');
                             $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                            //$conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                            //$conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best'); 
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
