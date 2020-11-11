@@ -14,8 +14,8 @@
         <div id="page-wrapper">
 
             <!-- Header -->
-            <?php include "header.inc.php"; ?>
             <?php session_start(); ?>
+            <?php include "header.inc.php"; ?>
 
             <!-- Main -->
             <article id="main">
