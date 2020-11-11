@@ -134,16 +134,16 @@
                         function saveMemberToDB() {
                             global $username, $first_name, $last_name, $email, $hashed_password, $errorMsg, $member, $success;
                             // Create database connection.
-                            $config = parse_ini_file('../../private/dbconfig.ini');
-                            //$conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                            //$config = parse_ini_file('/../../private/dbconfig.ini');
+                            $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
+                            //$conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
                             } else {
-                                $sql = $conn->prepare("INSERT INTO user_accounts(username, first_name, last_name, email, password, membership) VALUES (?,?,?,?,?,?)");
-                                $sql->bind_param('ssssss', $username, $first_name, $last_name, $email, $hashed_password, $member);
+                                $sql = $conn->prepare("INSERT INTO user_accounts (username, first_name, last_name, email, password, membership) VALUES (?,?,?,?,?,?)");
+                                $sql->bind_param("ssssss", $username, $first_name, $last_name, $email, $hashed_password, $member);
                                 //$sql = "INSERT INTO user_accounts (username, first_name, last_name, email, password, membership)";
                                 //$sql .= " VALUES ('$username', '$first_name', '$last_name', '$email', '$hashed_password', '$member')";
                                 // Execute the query
@@ -153,6 +153,7 @@
                                     $success = false;
                                     echo $errorMsg;
                                 }
+                                echo "hello";
                                 $sql->close();
                             }
                             $conn->close();
@@ -172,6 +173,7 @@
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
                             saveMemberToDB();
+                            echo "<p>" . $errorMsg . "</p>";
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>The following input errors were detected:</h3>";
