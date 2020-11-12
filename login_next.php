@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
 
     </head>
 
@@ -90,9 +91,24 @@
 
                         $username = sanitize_input($_POST["username"]);
                         $password = sanitize_input($_POST["password"]);
-                        authenticate($email, $password);
                         
-                                                if ($success) {
+                        if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+                                    $secret = '6Lc8AOIZAAAAADqbS8qZqk6BZlc_kz-nzbKL8INw';
+                                    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+                                    $responseData = json_decode($verifyResponse);
+                                    if ($responseData->success) {
+                                        authenticate($email, $password);
+                                      
+                                    } else {
+                                        $errorMsg = "Robot verification failed, please try again.";
+                                        echo "hi2";
+                                        $success = false;
+                                    }
+                                }
+                               
+                        
+                        
+                            if ($success) {
                             echo "<p>Welcome back, " . $_SESSION['username'] . "</p>";
                             echo '<a href="index.php" class="button">Home</a>';
                             header( "refresh:5;url=index.php" );
