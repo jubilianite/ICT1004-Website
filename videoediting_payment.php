@@ -15,14 +15,26 @@
 
             <!-- Header -->
             <?php include "header.inc.php"; ?>
+            <?php
+            $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // Sandbox Paypal API URL
+            $paypal_id = 'ict1004best@gmail.com'; // Business Email ID 
+            $payment_cancel = 'http://54.157.165.148/payment_cancel.php';
+            $payment_success = 'http://54.157.165.148/payment_success.php';
+            $_SESSION['package'] = $_POST['package']; //We'll need it later after payment is successful
+            $_SESSION['service'] = $_POST['service']; //We'll need it later after payment is successful
+            $item_name = "BEST " . trim($_POST['service']) . " " . trim($_POST['package']) . " Package"; 
+            $_SESSION['item_name'] = $item_name;
+            //It should show something like BEST Video Editing Basic Package
+            $amount = $_POST['amount'];
+            ?>
 
             <!-- Main -->
             <article id="main">
 
                 <header class="special container">
                     <span class="icon solid fa-film"></span>
-                    <h2>Professional Video Editing, Animation and Post Production Service</h2>
-                    <p>20 years of experience and counting...</p>
+                    <h2><?php echo $_POST['service'] ?></h2>
+                    <p><?php echo $_POST['package'] . " Package"?></p>
                 </header>
 
                 <section class="wrapper style4 container">
@@ -40,6 +52,21 @@
                             <p>We also take custom offers for specialized videos such as whiteboard videos, green screen editing, custom animations, etc.</p>
                             <p>We can also colour grade and provide custom motion graphics to your video to give it a professional finish.</p>
                             <p>For now, we only accept payment through Paypal.</p>
+                            <form action="<?php echo $paypal_url ?>" method="post" name="frmPayPal1">
+                                        <input type="hidden" name="business" value="<?php echo $paypal_id ?>">
+                                        <input type="hidden" name="cmd" value="_xclick">
+                                        <input type="hidden" name="item_name" value="<?php echo $item_name ?>">
+                                        <input type="hidden" name="credits" value="510">
+                                        <input type="hidden" name="userid" value="1">
+                                        <input type="hidden" name="no_shipping" value="1">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="amount" value="<?php echo $amount ?>">
+                                        <!--<input type="hidden" name="cpp_header_image" value="/logo1">-->
+                                        <input type="hidden" name="currency_code" value="SGD">
+                                        <input type="hidden" name="cancel_return" value="<?php echo $payment_cancel ?>">
+                                        <input type="hidden" name="return" value="<?php echo $payment_success ?>">
+                            <button class="buttons" type="submit">Make Payment</button>
+                            </form>
                         </section>
                     </div>
 
@@ -59,16 +86,6 @@
                                 <p>Sound Design & Mixing</p>
                                 <p>Subtitles</p>
                                 <p>Up to 2 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Basic">
-                                        <input type="hidden" name="amount" value=100>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$100</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
                             </section>
 
                         </div>
@@ -83,16 +100,6 @@
                                 <p>Sound Design & Mixing</p>
                                 <p>Subtitles</p>
                                 <p>Up to 5 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Standard">
-                                        <input type="hidden" name="amount" value=500>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$500</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
                             </section>
 
                         </div>
@@ -108,16 +115,6 @@
                                 <p>Subtitles</p>
                                 <p>Motion Graphics</p>
                                 <p>Up to 10 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Premium">
-                                        <input type="hidden" name="amount" value=2000>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$2000</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
                             </section>
 
                         </div>
