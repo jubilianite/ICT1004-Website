@@ -94,7 +94,7 @@
                         
                                                 if ($success) {
                             echo "<p>Welcome back, " . $_SESSION['username'] . "</p>";
-                            echo '<a href="login.php" class="button">Home</a>';
+                            echo '<a href="index.php" class="button">Home</a>';
                             header( "refresh:5;url=index.php" );
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
