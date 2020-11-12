@@ -142,8 +142,8 @@
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
                             } else {
-                                $sql = $conn->prepare("INSERT INTO user_accounts (username, first_name, last_name, email, password, membership) VALUES (?,?,?,?,?,?)");
-                                $sql->bind_param("ssssss", $username, $first_name, $last_name, $email, $hashed_password, $member);
+                                $sql = $conn->prepare("INSERT INTO user_accounts (username, first_name, last_name, email, password) VALUES (?,?,?,?,?)");
+                                $sql->bind_param("sssss", $username, $first_name, $last_name, $email, $hashed_password);
                                 //$sql = "INSERT INTO user_accounts (username, first_name, last_name, email, password, membership)";
                                 //$sql .= " VALUES ('$username', '$first_name', '$last_name', '$email', '$hashed_password', '$member')";
                                 // Execute the query
@@ -165,7 +165,6 @@
                         $password = sanitize_input($_POST["password"]);
                         $confirm_password = sanitize_input($_POST["confirm_password"]);
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                        $member = "member";
 
                         if ($success) {
                             echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
