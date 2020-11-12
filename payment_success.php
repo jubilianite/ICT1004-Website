@@ -44,27 +44,22 @@
                         $config = parse_ini_file('/../../private/dbconfig.ini');
                         //$conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                         $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
-                        $stmt = $conn->prepare("INSERT INTO 'transaction_history' ('transaction_id', 'date_and_time', 'username', 'service', 'package', 'paid_amount', 'currency', 'payment_method') VALUES (?,?,?,?,?,?,?,?)");
-                        $stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
 
+                        $stmt = $conn->prepare("INSERT INTO `transaction_history` (`transaction_id`, `date_and_time`, `username`, `service`, `package`, `paid_amount`, `currency`, `payment_method`) VALUES (?,?,?,?,?,?,?,?)");
+                        $stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
+                        //$stmt->execute();
                         if ($conn->connect_error) {
-                            echo "hi";
                             $errorMsg = "Connection failed: " . $conn->connect_error;
                         } else {
-                            echo "hi2";
-                            $stmt = $conn->prepare("INSERT INTO 'transaction_history' ('transaction_id', 'date_and_time', 'username', 'service', 'package', 'paid_amount', 'currency', 'payment_method') VALUES (?,?,?,?,?,?,?,?)");
-                            $stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
-                            //$sql = "INSERT INTO user_accounts (username, first_name, last_name, email, password, membership)";
-                            //$sql .= " VALUES ('$username', '$first_name', '$last_name', '$email', '$hashed_password', '$member')";
+                            //$stmt = $conn->prepare("INSERT INTO 'transaction_history' ('transaction_id', 'date_and_time', 'username', 'service', 'package', 'paid_amount', 'currency', 'payment_method') VALUES (?,?,?,?,?,?,?,?)");
+                            //$stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
                             // Execute the query
-                            $stmt->execute();
-                            echo "hi3";
-                            if (!$stmt->execute()) {
+                            if ($stmt->execute()) {
+                                echo "<h3><strong>Transaction ID: </strong>" . $transaction_id . "</h3>";
+                            } else {
                                 $errorMsg = "Database error: " . $conn->error;
                                 $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
                                 echo $errorMsg;
-                            } else {
-                                echo "<h3><strong>Transaction ID: </strong>" . $transaction_id . "</h3>";
                             }
                             $stmt->close();
                             $conn->close();
