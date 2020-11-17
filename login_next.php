@@ -64,8 +64,6 @@
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 if ($result->num_rows > 0) {
-                                    // Note that email field is unique, so should only have
-                                    // one row in the result set.
                                     $row = $result->fetch_assoc();
                                     $first_name = $row["first_name"];
                                     $last_name = $row["last_name"];
@@ -113,7 +111,7 @@
                         if ($success) {
                             echo "<p>Welcome back, " . $_SESSION['username'] . "</p>";
                             echo '<a href="index.php" class="button">Home</a>';
-                            //header("refresh:5;url=index.php");
+                            header("refresh:5;url=index.php");
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>The following input errors were detected:</h3>";
