@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
 
     </head>
 
@@ -39,9 +38,7 @@
                                     <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
                                 </div>
                                 <p>Forgot your password? Click <a href="/forgot_password.php">here</a> to reset it!</p>
-
                                 <div class="col-12">
-                                    <div style="padding-left: 33%; padding-bottom: 30px;" class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s"></div>
                                     <ul class="buttons">
                                         <li><input type="submit" class="special" value="Login" /></li>
                                     </ul>

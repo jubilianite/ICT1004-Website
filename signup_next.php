@@ -30,7 +30,10 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
-                        $success = true; //By default: True   
+                        //ini_set('display_errors', 1);
+                        //ini_set('display_startup_errors', 1);
+                        //error_reporting(E_ALL);
+                        $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
 
                         //Function to ensure that input contains only alphabets and spaces (if any)
@@ -115,7 +118,6 @@
                         //    $errorMsg .= "<p>Please input a valid password that contains at least 8 characters, one lower case letter, one upper case letter and one digit.</p>";
                         //    $success = false;
                         //}
-                        
                         //Check if passwords match
                         if ($_POST["password"] != $_POST["confirm_password"]) {
                             $errorMsg .= "<p>Your passwords do not match.</p>";
@@ -134,9 +136,9 @@
                         function saveMemberToDB() {
                             global $username, $first_name, $last_name, $email, $hashed_password, $errorMsg, $member, $success;
                             // Create database connection.
-                            $config = parse_ini_file('/../../private/dbconfig.ini');
+                            //$config = parse_ini_file('/../../private/dbconfig.ini');
                             //$conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best'); 
+                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -151,7 +153,6 @@
                                     $errorMsg = "Database error: " . $conn->error;
                                     $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
                                     $success = false;
-                                    echo $errorMsg;
                                 }
                                 $sql->close();
                             }
@@ -166,12 +167,12 @@
                         $confirm_password = sanitize_input($_POST["confirm_password"]);
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+                        saveMemberToDB();
+                        
                         if ($success) {
                             echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
-                            saveMemberToDB(); //Enhancement: Should finish this function before success.
-                            echo "<p>" . $errorMsg . "</p>"; //Change all to console.log afterwards
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>The following input errors were detected:</h3>";
@@ -186,7 +187,7 @@
             </article>
 
             <!-- Footer -->
-            <?php include "footer.inc.php"; ?>
+<?php include "footer.inc.php"; ?>
 
         </div>
 

@@ -32,6 +32,11 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
+                        ini_set('display_errors', 1);
+                        ini_set('display_startup_errors', 1);
+                        error_reporting(E_ALL);
+                        $success = false; //By default: false   
+                        $errorMsg = ""; //By default: Empty
 
                         function sanitize_input($data) {
                             $data = trim($data);
@@ -43,12 +48,13 @@
                         function authenticate($username, $password) {
                             global $first_name, $last_name, $username, $email, $password, $errorMsg, $success;
                             // Create database connection.
-                            $config = parse_ini_file('../../private/db-config.ini');
+                            //$config = parse_ini_file('../../private/db-config.ini');
                             //$conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
                             $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
                             // Check connection
                             if ($conn->connect_error) {
-                                $errorMsg = "Connection failed: " . $conn->connect_error;
+                                $errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>";
+                                //$errorMsg .= "Execute failed: (" . $conn->errno . ") " . $conn->error;
                                 $success = false;
                             } else {
                                 // Prepare the statement:
@@ -58,17 +64,17 @@
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 if ($result->num_rows > 0) {
-                                // Note that email field is unique, so should only have
-                                // one row in the result set.
+                                    // Note that email field is unique, so should only have
+                                    // one row in the result set.
                                     $row = $result->fetch_assoc();
                                     $first_name = $row["first_name"];
                                     $last_name = $row["last_name"];
                                     $email = $row["email"];
-                                    $member = $row["membership"];
+                                    $role = $row["role"];
                                     $hashed_password = $row["password"];
                                     // Check if the password matches:
                                     if (!password_verify($_POST["password"], $hashed_password)) { //Enhancement: Change post to $password after sanitized.
-                                        $errorMsg = "User not found or password doesn't match...";
+                                        $errorMsg .= "User not found or password doesn't match...";
                                         $success = false;
                                     } else {
                                         echo "<h4>Password login accepted. Redirecting you to our home page...</h4>";
@@ -76,12 +82,12 @@
                                         $_SESSION['last_name'] = $row['last_name'];
                                         $_SESSION['email'] = $row['email'];
                                         $_SESSION['username'] = $row['username'];
-                                        $_SESSION['member'] = $row['membership'];
+                                        $_SESSION['role'] = $row['role'];
                                         $_SESSION['logged_in'] = true;
                                         $success = true;
                                     }
                                 } else {
-                                    $errorMsg = "Email not found or password doesn't match...";
+                                    $errorMsg .= "Email not found or password doesn't match...";
                                     $success = false;
                                 }
                                 $stmt->close();
@@ -91,27 +97,23 @@
 
                         $username = sanitize_input($_POST["username"]);
                         $password = sanitize_input($_POST["password"]);
-                        
+
                         if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                                    $secret = '6Lc8AOIZAAAAADqbS8qZqk6BZlc_kz-nzbKL8INw';
-                                    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-                                    $responseData = json_decode($verifyResponse);
-                                    if ($responseData->success) {
-                                        authenticate($email, $password);
-                                      
-                                    } else {
-                                        $errorMsg = "Robot verification failed, please try again.";
-                                        echo "hi2";
-                                        $success = false;
-                                    }
-                                }
-                               
-                        
-                        
-                            if ($success) {
+                            $secret = '6Lc8AOIZAAAAADqbS8qZqk6BZlc_kz-nzbKL8INw';
+                            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+                            $responseData = json_decode($verifyResponse);
+                            if ($responseData->success) {
+                                authenticate($username, $password);
+                            }
+                        } else {
+                                $errorMsg .= "CAPTCHA verification failed, please try again.";
+                                $success = false;
+                            }
+
+                        if ($success) {
                             echo "<p>Welcome back, " . $_SESSION['username'] . "</p>";
                             echo '<a href="index.php" class="button">Home</a>';
-                            header( "refresh:5;url=index.php" );
+                            //header("refresh:5;url=index.php");
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>The following input errors were detected:</h3>";
