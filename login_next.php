@@ -61,10 +61,6 @@
                                 $result = $stmt->get_result();
                                 if ($result->num_rows > 0) {
                                     $row = $result->fetch_assoc();
-                                    $first_name = $row["first_name"];
-                                    $last_name = $row["last_name"];
-                                    $email = $row["email"];
-                                    $role = $row["role"];
                                     $hashed_password = $row["password"];
                                     // Check if the password matches:
                                     if (!password_verify($_POST["password"], $hashed_password)) { //Enhancement: Change post to $password after sanitized.
