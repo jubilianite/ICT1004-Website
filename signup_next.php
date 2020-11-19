@@ -136,9 +136,8 @@
                         function saveMemberToDB() {
                             global $username, $first_name, $last_name, $email, $hashed_password, $errorMsg, $member, $success;
                             // Create database connection.
-                            //$config = parse_ini_file('/../../private/dbconfig.ini');
-                            //$conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                            $config = parse_ini_file('./../private/dbconfig.ini');
+                            $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -153,6 +152,9 @@
                                     $errorMsg = "Database error: " . $conn->error;
                                     $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
                                     $success = false;
+                                }
+                                else {
+                                    $success = true;
                                 }
                                 $sql->close();
                             }

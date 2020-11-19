@@ -32,9 +32,6 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
-                        ini_set('display_errors', 1);
-                        ini_set('display_startup_errors', 1);
-                        error_reporting(E_ALL);
                         $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
 
@@ -48,13 +45,12 @@
                         function authenticate($username, $password) {
                             global $first_name, $last_name, $username, $email, $password, $errorMsg, $success;
                             // Create database connection.
-                            //$config = parse_ini_file('../../private/db-config.ini');
-                            //$conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                            $config = parse_ini_file('./../private/dbconfig.ini');
+                            $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>";
-                                //$errorMsg .= "Execute failed: (" . $conn->errno . ") " . $conn->error;
+                                //$errorMsg .= "Execute failed: ( " . $conn->errno . " ) " . $conn->error;
                                 $success = false;
                             } else {
                                 // Prepare the statement:
@@ -81,6 +77,7 @@
                                         $_SESSION['email'] = $row['email'];
                                         $_SESSION['username'] = $row['username'];
                                         $_SESSION['role'] = $row['role'];
+                                        $_SESSION['user_id'] = $row['user_id'];
                                         $_SESSION['logged_in'] = true;
                                         $success = true;
                                     }
