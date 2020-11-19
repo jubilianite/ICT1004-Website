@@ -119,19 +119,19 @@
                                 savecontactToDB();
                                 echo "<h4>Thank You!</h4>";
                                 echo "<p>Thank you for Contacting Us, $name.</p>";
-                                echo "<p>your query has been sent to the relevant departments </p>";
+                                echo "<p>Your query has been sent to the relevant departments </p>";
                                 echo "<p>We will get back to you in 3 to 5 Working Days</p>";
                                 echo "<p>Your Email: " . $email."</p>";
                                 //echo '<button onclick="history.go(-1);">BACK</button>';
                                 //echo '<button onclick=<a href="index.php"</a>">BACK</button>';
-                                echo '<a href="index.php"> <button type="button" >Home</button></a>';          
+                                echo '<ul class="buttons"><li><a href="index.php" class="button primary">Home</a></li></ul>';          
                             } 
                             else 
                             {
-                                echo "<h1> Oop!</h1>";
-                                echo "<h4>There seems to be some issues? :</h4>";
+                                echo "<h1> Oops!</h1>";
+                                echo "<h4>An error has occured :</h4>";
                                 echo "<p>" . $errorMsg . "</p>";
-                                echo '<a href="contact.php"><button type="button" >Contact Us Again?</button></a>';
+                                echo '<ul class="buttons"><li><a href="contact.php" class="button primary">Contact Us Again</a></li></ul>'; 
                             }
                         ?>
                     </div>    

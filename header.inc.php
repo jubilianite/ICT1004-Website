@@ -18,7 +18,7 @@ if (!(isset($_SESSION['logged_in']))) {
     $if_loggedin = "<li>
                     <a href='/login.php' class='button primary'>Login Here!</a>
                     </li>";
-} else if ($_SESSION['role']=='admin') {
+} else if ($_SESSION['role'] == "admin") {
     $if_loggedin = "<li>
                     <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
                         <ul>

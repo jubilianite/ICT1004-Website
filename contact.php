@@ -34,7 +34,7 @@
                                     <input type="text" name="name" required name="name" placeholder="Name" />
                                 </div>
                                 <div class="col-6 col-12-mobile">
-                                    <input type="text" name="email" required name="email" pattern="[a-z0-9._%+-]+@[^@\s]+\.[^@\s]+" placeholder="Email@email.com" />
+                                    <input type="text" name="email" required name="email" pattern="[a-z0-9._%+-]+@[^@\s]+\.[^@\s]+" placeholder="Email" />
                                 </div>
                                 <div class="col-12">
                                     <input type="text" name="subject" required name="subject" placeholder="Subject" />
