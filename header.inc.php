@@ -1,5 +1,10 @@
 <?php
 
+//For troubleshooting purposes
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+
 $currentpage = $_SERVER['REQUEST_URI'];
 if ($currentpage == "/" || $currentpage == "/index.php" || $currentpage == "/index" || $currentpage == "") {
     echo "<header id='header' class='alt'>"; // Special Header Effect for index page
@@ -12,6 +17,16 @@ session_start();
 if (!(isset($_SESSION['logged_in']))) {
     $if_loggedin = "<li>
                     <a href='/login.php' class='button primary'>Login Here!</a>
+                    </li>";
+} else if ($_SESSION['role']='admin') {
+    $if_loggedin = "<li>
+                    <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
+                        <ul>
+                        <li><a href='/profile.php'>Profile</a></li>
+                        <li><a href='/adminpanel.php'>Admin Panel</a></li>
+                        <li><a href='/transaction_history.php'>Transaction History</a></li>
+                        <li><a href='/logout.php'>Log Out</a></li>
+                        </ul>
                     </li>";
 } else {
     $if_loggedin = "<li>
@@ -49,7 +64,7 @@ if (!(isset($_SESSION['logged_in']))) {
                 -->
             </ul>
         </li>
-        <?php echo $if_loggedin; ?>
+<?php echo $if_loggedin; ?>
 
         <!--<ul>
             <li><a href="left-sidebar.html">Left Sidebar</a></li>

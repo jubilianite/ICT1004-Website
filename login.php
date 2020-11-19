@@ -23,7 +23,7 @@
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
                     <h2>Login</h2>
-                <p>Not a member with us yet? Head to the <a href="signup.php">Sign Up </a>page now!</p>
+                    <p>Not a member with us yet? Head to the <a href="signup.php">Sign Up </a>page now!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
@@ -34,14 +34,13 @@
                             <div class="row gtr-50">
                                 <div class="col-12">
                                     <input type="text" name="username" id="username" placeholder="Username" />
-                                </div>
-                                <div class="col-12">
+                                    <br/>
                                     <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
+                                    <br/>
+                                    <div class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s"></div>
                                 </div>
                                 <p>Forgot your password? Click <a href="/forgot_password.php">here</a> to reset it!</p>
-
                                 <div class="col-12">
-                                    <div style="padding-left: 33%; padding-bottom: 30px;" class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s"></div>
                                     <ul class="buttons">
                                         <li><input type="submit" class="special" value="Login" /></li>
                                     </ul>

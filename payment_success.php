@@ -22,7 +22,7 @@
                 <header class="special container">
                     <span class="icon solid fa-heart"></span>
                     <h2>THANK YOU!</h2>
-                    <p>We will contact you via your registered email soon to discuss about the specific requirements!</p>
+                    <p>We have received your payment. We will contact you via your registered email soon to discuss about the specific requirements!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
@@ -35,31 +35,35 @@
                         $currency = $_REQUEST['cc']; // Paypal Currency Type
                         $payment_method = "Paypal";
                         $username = $_SESSION['username'];
+                        $user_id = $_SESSION['user_id'];
                         $date = date('Y-m-d H:i:s');
                         $service = $_SESSION['service']; // E.g. Video Editing
                         $package = $_SESSION['package']; // E.g. Premium
                         $item_name = $_SESSION['item_name']; // E.g. BEST Video Editing Basic Package
                         $errorMsg = "";
 
-                        $config = parse_ini_file('/../../private/dbconfig.ini');
-                        //$conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                        $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                        $config = parse_ini_file('./../private/dbconfig.ini');
+                        $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
 
-                        $stmt = $conn->prepare("INSERT INTO `transaction_history` (`transaction_id`, `date_and_time`, `username`, `service`, `package`, `paid_amount`, `currency`, `payment_method`) VALUES (?,?,?,?,?,?,?,?)");
-                        $stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
-                        //$stmt->execute();
+                        $stmt = $conn->prepare("INSERT INTO `transaction_history` (`transaction_id`, `date_and_time`, `user_id`, `username`, `paid_amount`, `service`, `package`, `currency`, `payment_method`) VALUES (?,?,?,?,?,?,?,?,?)");
+                        $stmt->bind_param('ssisissss', $transaction_id, $date, $user_id, $username, $price, $service, $package, $currency, $payment_method);
+                        //$stmt->execute(); //For troubleshooting purposes.
                         if ($conn->connect_error) {
-                            $errorMsg = "Connection failed: " . $conn->connect_error;
+                            //$errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>"; //Reserved for troubleshooting purposes
+                            //echo $errorMsg; //Reserved for troubleshooting purposes
+                            echo "A Database error occured. We will seek to rectify this as soon as possible.";
                         } else {
-                            //$stmt = $conn->prepare("INSERT INTO 'transaction_history' ('transaction_id', 'date_and_time', 'username', 'service', 'package', 'paid_amount', 'currency', 'payment_method') VALUES (?,?,?,?,?,?,?,?)");
-                            //$stmt->bind_param('sssssiss', $transaction_id, $date, $username, $service, $package, $price, $currency, $payment_method);
                             // Execute the query
                             if ($stmt->execute()) {
                                 echo "<h3><strong>Transaction ID: </strong>" . $transaction_id . "</h3>";
+                                echo "<h3><strong>Product/Service: </strong>" . $item_name . "</h3>";
+                                echo "<h3><strong>Date & Time: </strong>" . $date . "</h3>";
+                                echo "<h3><strong>Amount Paid: </strong>" . $price . " " . $currency . "</h3>";
                             } else {
-                                $errorMsg = "Database error: " . $conn->error;
-                                $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
-                                echo $errorMsg;
+                                //$errorMsg .= "Database error: " . $conn->error . "<br/>";
+                                //$errorMsg .= "Execute failed: " . $conn->errno . "<br/>";
+                                //echo $errorMsg;
+                                echo "A Database error occured. We will seek to rectify this as soon as possible.";
                             }
                             $stmt->close();
                             $conn->close();

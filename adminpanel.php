@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
 
     </head>
 
@@ -22,8 +21,7 @@
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>Login</h2>
-                <p>Not a member with us yet? Head to the <a href="signup.php">Sign Up </a>page now!</p>
+                    <h2>Admin Panel</h2>
                 </header>
 
                 <section class="wrapper style4 special container medium">
@@ -32,23 +30,43 @@
                     <div class="content">
                         <form action="login_next.php" method="post">
                             <div class="row gtr-50">
-                                <div class="col-12">
-                                    <input type="text" name="username" id="username" placeholder="Username" />
-                                </div>
-                                <div class="col-12">
-                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
-                                </div>
-                                <p>Forgot your password? Click <a href="/forgot_password.php">here</a> to reset it!</p>
-
-                                <div class="col-12">
-                                    <div style="padding-left: 33%; padding-bottom: 30px;" class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s"></div>
-                                    <ul class="buttons">
-                                        <li><input type="submit" class="special" value="Login" /></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </form>
                     </div>
+                            <?php
+        $servername = "localhost";
+        $username = "username";
+        $password = "password";
+        $dbname = "myDB";
+
+// Create connection
+        $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+// Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = 'SELECT * '
+                . 'FROM user_accounts, transaction_history '
+                . 'WHERE role ="member" AND user_accounts.user_id = transaction_history.user_id';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<br> id: " . $row["user_id"] . 
+                        " - Name: " . $row["username"] . 
+                        " - Email: " . $row["email"] . 
+                        " - Transaction ID: " .$row["transaction_id"] . 
+                        " - Paid Amount: " .$row["paid_amount"] . 
+                        " - Package: " . $row["package"] . 
+                        " - Payment Method: " . $row["payment_method"] . "<br>";
+            }
+        } else {
+            echo "0 results";
+        }
+
+        $conn->close();
+        ?>
 
                 </section>
 
