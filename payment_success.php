@@ -37,16 +37,14 @@
                         $username = $_SESSION['username'];
                         $user_id = $_SESSION['user_id'];
                         $date = date('Y-m-d H:i:s');
-                        $service = $_SESSION['service']; // E.g. Video Editing
-                        $package = $_SESSION['package']; // E.g. Premium
-                        $item_name = $_SESSION['item_name']; // E.g. BEST Video Editing Basic Package
+                        $item_name = $_SESSION['product_name']; // E.g. Video Editing Basic Package
                         $errorMsg = "";
 
                         $config = parse_ini_file('./../private/dbconfig.ini');
                         $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
 
-                        $stmt = $conn->prepare("INSERT INTO `transaction_history` (`transaction_id`, `date_and_time`, `user_id`, `username`, `paid_amount`, `service`, `package`, `currency`, `payment_method`) VALUES (?,?,?,?,?,?,?,?,?)");
-                        $stmt->bind_param('ssisissss', $transaction_id, $date, $user_id, $username, $price, $service, $package, $currency, $payment_method);
+                        $stmt = $conn->prepare("INSERT INTO `transaction_history` (`transaction_id`, `date_and_time`, `user_id`, `username`, `paid_amount`, `product_name`, `product_type`, `currency`, `payment_method`) VALUES (?,?,?,?,?,?,?,?,?)");
+                        $stmt->bind_param('ssisissss', $transaction_id, $date, $user_id, $username, $price, $item_name, $item_name, $currency, $payment_method);
                         //$stmt->execute(); //For troubleshooting purposes.
                         if ($conn->connect_error) {
                             //$errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>"; //Reserved for troubleshooting purposes

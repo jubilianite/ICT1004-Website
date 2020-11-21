@@ -51,26 +51,27 @@
                         <?php
                         $config = parse_ini_file('./../private/dbconfig.ini');
                         $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                        $product_name = "Video Editing"; //Declare Product Name Here
+                        $product_name = "Video Editing".'%'; //Declare Product Name Here
 
                         if ($conn->connect_error) {
                             $errorMsg = "Connection failed: " . $conn->connect_error;
                         } else {
-                            $sql = $conn->prepare("SELECT product_id, product_name, product_type, product_price, description FROM `products` WHERE product_name LIKE ?");
+                            $sql = $conn->prepare("SELECT product_id, product_name, product_price, description FROM `products` WHERE product_name LIKE ?");
                             $sql->bind_param('s', $product_name);
                             // Execute the query
-                            $sql->execute() or die('There are no packages available right now for the service you are looking for. We are still working on it. Please visit this page again.');
+                            $sql->execute() or die();
                             //$result = $sql->execute(); //Bind Data to $result
-                            $sql->bind_result($product_id, $product_name, $product_type, $product_price, $description) or die('There are no packages available right now for the service you are looking for. We are still working on it. Please visit this page again.');
+                            $sql->bind_result($product_id, $product_name, $product_price, $description) or die();
 
                                 while ($sql->fetch()) {
                                     echo '<div class="col-4 col-12-narrower"><section>'; //Declare Header of DIV
-                                    echo '<header><h3><strong>' . $product_type . '</strong></h3></header>';
+                                    echo '<header><h3><strong>' . $product_name . '</strong></h3></header>';
                                     echo '<p>' . $description . '</p>';
                                     echo '<footer><form action="videoediting_payment.php" method="post">';
+                                    echo '<input type="hidden" name="product_id" value="' . $product_id . '">';
                                     echo '<input type="hidden" name="product_name" value="' . $product_name . '">';
-                                    echo '<input type="hidden" name="product_type" value="' . $product_type . '">';
                                     echo '<input type="hidden" name="product_price" value="' . $product_price . '">';
+                                    echo '<input type="hidden" name="description" value="' . $description . '">';
                                     echo '<ul class="buttons"><li><button class="buttons" type="submit">$' . $product_price . '</button></li></ul>';
                                     echo '</form></footer>';
                                     echo '</section></div>';
