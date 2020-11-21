@@ -34,13 +34,19 @@
                             <div class="row gtr-50">
                                 <div class="col-12">
                                     <input type="text" name="username" id="username" placeholder="Username" />
-                                    <br/>
-                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
-                                    <br/>
-                                    <div class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s"></div>
                                 </div>
-                                <p>Forgot your password? Click <a href="/forgot_password.php">here</a> to reset it!</p>
                                 <div class="col-12">
+                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
+                                </div>
+                                <div class="col-12">
+                                    <div class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <p>Forgot your password? Click <a href="/forgot_password.php">here</a> to reset it!</p>
                                     <ul class="buttons">
                                         <li><input type="submit" class="special" value="Login" /></li>
                                     </ul>
@@ -48,9 +54,7 @@
                             </div>
                         </form>
                     </div>
-
                 </section>
-
             </article>
 
             <!-- Footer -->
