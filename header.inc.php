@@ -25,6 +25,7 @@ if (!(isset($_SESSION['logged_in']))) {
                         <li><a href='/profile.php'>Profile</a></li>
                         <li><a href='/adminpanel.php'>Admin Panel</a></li>
                         <li><a href='/transaction_history.php'>Transaction History</a></li>
+                        <li><a href='/edit_product.php'>Edit Product</a></li> 
                         <li><a href='/logout.php'>Log Out</a></li>
                         </ul>
                     </li>";
