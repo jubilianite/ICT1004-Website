@@ -20,9 +20,9 @@
             $paypal_id = 'ict1004best@gmail.com'; // Business Email ID 
             $payment_cancel = 'http://54.157.165.148/payment_cancel.php';
             $payment_success = 'http://54.157.165.148/payment_success.php';
-            $_SESSION['package'] = $_POST['package']; //We'll need it later after payment is successful
-            $_SESSION['service'] = $_POST['service']; //We'll need it later after payment is successful
-            $item_name = "BEST " . trim($_POST['service']) . " " . trim($_POST['package']) . " Package"; 
+            $_SESSION['product_name'] = $_POST['product_name']; //We'll need it later after payment is successful
+            $_SESSION['product_type'] = $_POST['product_type']; //We'll need it later after payment is successful
+            $item_name = trim($_POST['product_name']) . " " . trim($_POST['product_type']); 
             $_SESSION['item_name'] = $item_name;
             //It should show something like BEST Video Editing Basic Package
             $amount = $_POST['amount'];
@@ -33,8 +33,8 @@
 
                 <header class="special container">
                     <span class="icon solid fa-film"></span>
-                    <h2><?php echo $_POST['service'] ?></h2>
-                    <p><?php echo $_POST['package'] . " Package"?></p>
+                    <h2><?php echo $item_name ?></h2>
+
                 </header>
 
                 <section class="wrapper style4 container">

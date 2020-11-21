@@ -45,89 +45,47 @@
 
                 </section>
 
-                <!-- Two -->
                 <section class="wrapper style1 container special">
                     <div class="row">
-                        <div class="col-4 col-12-narrower">
 
-                            <section>
-                                <header>
-                                    <h3><strong>Basic Package</strong></h3>
-                                </header>
-                                <p>Up to 5 minutes running time</p>
-                                <p>Basic Color Grading</p>
-                                <p>Sound Design & Mixing</p>
-                                <p>Subtitles</p>
-                                <p>Up to 2 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Basic">
-                                        <input type="hidden" name="amount" value=100>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$100</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
-                            </section>
+                        <?php
+                        $config = parse_ini_file('./../private/dbconfig.ini');
+                        $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
+                        $product_name = "Video Editing"; //Declare Product Name Here
 
-                        </div>
-                        <div class="col-4 col-12-narrower">
+                        if ($conn->connect_error) {
+                            $errorMsg = "Connection failed: " . $conn->connect_error;
+                        } else {
+                            $sql = $conn->prepare("SELECT product_id, product_name, product_type, product_price, description FROM `products` WHERE product_name LIKE ?");
+                            $sql->bind_param('s', $product_name);
+                            // Execute the query
+                            $sql->execute() or die('There are no packages available right now for the service you are looking for. We are still working on it. Please visit this page again.');
+                            //$result = $sql->execute(); //Bind Data to $result
+                            $sql->bind_result($product_id, $product_name, $product_type, $product_price, $description) or die('There are no packages available right now for the service you are looking for. We are still working on it. Please visit this page again.');
 
-                            <section>
-                                <header>
-                                    <h3><strong>Standard Package</strong></h3>
-                                </header>
-                                <p>Up to 15 minutes running time</p>
-                                <p>Standard Color Grading</p>
-                                <p>Sound Design & Mixing</p>
-                                <p>Subtitles</p>
-                                <p>Up to 5 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Standard">
-                                        <input type="hidden" name="amount" value=500>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$500</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
-                            </section>
+                                while ($sql->fetch()) {
+                                    echo '<div class="col-4 col-12-narrower"><section>'; //Declare Header of DIV
+                                    echo '<header><h3><strong>' . $product_type . '</strong></h3></header>';
+                                    echo '<p>' . $description . '</p>';
+                                    echo '<footer><form action="videoediting_payment.php" method="post">';
+                                    echo '<input type="hidden" name="product_name" value="' . $product_name . '">';
+                                    echo '<input type="hidden" name="product_type" value="' . $product_type . '">';
+                                    echo '<input type="hidden" name="product_price" value="' . $product_price . '">';
+                                    echo '<ul class="buttons"><li><button class="buttons" type="submit">$' . $product_price . '</button></li></ul>';
+                                    echo '</form></footer>';
+                                    echo '</section></div>';
+                                
+                            }
+                        }
+                        ?>
 
-                        </div>
-                        <div class="col-4 col-12-narrower">
-
-                            <section>
-                                <header>
-                                    <h3><strong>Premium Package</strong></h3>
-                                </header>
-                                <p>Up to 60 minutes running time</p>
-                                <p>Premium Color Grading</p>
-                                <p>Sound Design & Mixing</p>
-                                <p>Subtitles</p>
-                                <p>Motion Graphics</p>
-                                <p>Up to 10 revisions</p>
-                                <footer>
-                                    <form action="videoediting_payment.php" method="post">
-                                        <input type="hidden" name="service" value="Video Editing">
-                                        <input type="hidden" name="package" value="Premium">
-                                        <input type="hidden" name="amount" value=2000>
-                                        <ul class="buttons">
-                                            <li><button class="buttons" type="submit">$2000</button></li>
-                                        </ul>
-                                    </form>
-                                </footer>
-                            </section>
-
-                        </div>
                     </div>
                 </section>
 
             </article>
 
             <!-- Footer -->
-            <?php include "footer.inc.php"; ?>
+<?php include "footer.inc.php"; ?>
 
         </div>
 
