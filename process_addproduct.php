@@ -82,16 +82,16 @@
 
                     if ($success) {
                         saveMemberToDB();
-                        echo "<h4>Product added successfully!</h4>";
+                        //echo "<h4>Product added successfully!</h4>";
 //              first character of input will be caps
                         echo "<p>Redirecting back" . ".";
-                        header("refresh:5;url=edit_product.php");
+                        
                         echo "<p> </p>";
                     } else {
                         echo "<h4>Oops!</h4>";
                         echo "<h4>The following input errors were detected:</h4>";
                         echo "<p>" . $errorMsg . "</p>";
-                        echo '<button class="btn btnlor"> <a href="register.php">Return to Sign Up </a> </button>';
+                        echo '<button class="btn btnlor"> <a href="edit_product.php">Return to Edit Product </a> </button>';
                     }
 
                     function sanitize_input($data) {
@@ -102,7 +102,7 @@
                     }
 
                     function saveMemberToDB() {
-                        global $productN, $productT, $productP, $success;
+                        global $productID, $productN, $productT, $productP, $success;
                         // Create database connection.
                         $config = parse_ini_file('../../private/db-config.ini');
                         $conn = new mysqli($config['servername'], $config['username'],
@@ -115,10 +115,14 @@
                             // Prepare the statement:
                             $stmt = $conn->prepare("INSERT INTO products (product_id, product_name, product_type, product_price) VALUES (?,?, ?, ?)");
                             // Bind & execute the query statement:
-                            $stmt->bind_param("issi", $productID, $productN, $productP, $productT, $pwd_hashed);
+                            $stmt->bind_param("issi", $productID, $productN, $productT, $productP, $pwd_hashed);
                             if (!$stmt->execute()) {
                                 $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                                 $success = false;
+                            }
+                            else{
+                                echo "successful updated product";
+                                header("refresh:5;url=edit_product.php");
                             }
                             $stmt->close();
                         }

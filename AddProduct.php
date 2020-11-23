@@ -46,10 +46,8 @@ and open the template in the editor.
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
-
-                    <button class="btn btn-primary" type="back" onclick="window.location.href = 'http://54.157.165.148/edit.php'">Back</button>
-
                 </form>
+                <button class="btn btn-primary" type="back" onclick="window.location.href = 'http://54.157.165.148/edit_product.php'">Back</button>
             </article>
         </main>
     </body>

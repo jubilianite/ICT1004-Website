@@ -55,11 +55,13 @@
                                             $product_name = $row["product_name"];
                                             $product_type = $row["product_type"];
                                             $product_price = $row["product_price"];
+                                            $description = $row["description"];
 
                                             echo '<input type="hidden" id="productid" name="ProductID" value="' . $product_id . '" >';
                                             echo '<input type="text" id="productN" name="ProductName" value="' . $product_name . '" >';
                                             echo '<input type="text" id="productT" name="ProductType" value="' . $product_type . '" >';
                                             echo '<input type="text" id="productP" name="ProductPrice" value="' . $product_price . '" >';
+                                            echo '<input type="text" id="productD" name="ProductDescription" value="' . $description. '" >';
                                         }
                                     } else {
                                         echo "0 results";
@@ -83,6 +85,7 @@
                             $productName = "";
                             $productType = "";
                             $productPrice = "";
+                            $description = "";
                             $success = True;
                             if (isset($_POST['submit'])) {
                                 $productID = $_POST['ProductID'];
@@ -104,9 +107,15 @@
                                     echo "product price is empty";
                                     $success = False;
                                 }
+                                 if (!empty($_POST['description'])) {
+                                    $productPrice = $_POST['description'];
+                                } else {
+                                    echo "product price is empty";
+                                    $success = False;
+                                }
                                 if ($success == True) {
                                     //"UPDATE `best`.`products` SET `product_name` = '$productName' WHERE (`product_id` = '$productID')";
-                                    $sql1 = "UPDATE products SET product_name='$productName' ,product_type='$productType' ,product_price='$productPrice' WHERE product_id='$productID'";
+                                    $sql1 = "UPDATE products SET product_name='$productName' ,product_type='$productType' ,product_price='$productPrice', description='$description', WHERE product_id='$productID'";
 
                                     //$sql2 = "UPDATE best.products SET product_name='$productName' WHERE product_id ='$productID'";
                                     //echo $sql1;
