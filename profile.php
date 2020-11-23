@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body class="index is-preload">
@@ -23,7 +23,11 @@
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>Profile Page</h2>
+                    <?php session_start();
+                    ?>
+                    <h2><?php echo $_SESSION['username']. "'s Profile Page"; 
+                    echo '<br/><a href="edit_account.php"><span class ="material-icons md-light" style="font-size:1em">edit</span></a>';?></h2>
+                     
                 </header>
 
                 <section class="wrapper style4 special container medium">
@@ -41,7 +45,7 @@
                         $sql = 'SELECT * FROM user_accounts WHERE username = "'.$validUser.'"';
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
-                        echo "<p>Welcome back, " . $_SESSION['username'] . ", you are a " .$row["role"]. ".</p>";
+                        echo "<p>Welcome back, " . $_SESSION['last_name'] . ", you are a " .$row["role"]. " with us.</p>";
                         //$servername = "best";
                         //$username = "username";
                         //$password = "password";
