@@ -23,11 +23,6 @@ and open the template in the editor.
 
                 <form action="process_addproduct.php" method="post">
                     <div class="form-group">
-                        <label for="productID">Product ID: </label>
-                        <input class="form-control" type="text" id="productID"
-                               name="productID" placeholder="Enter the new product id">
-                    </div>
-                    <div class="form-group">
                         <label for="productN">Product Name: </label>
                         <input class="form-control" type="text" id="productN"
                                name="productN" placeholder="Enter the new product">
@@ -41,6 +36,12 @@ and open the template in the editor.
                         <label for="productP">Product Price: </label>
                         <input class="form-control" type="text" id="productP"
                                name="productP" placeholder="Enter the product price">
+                    </div>
+                    
+                      <div class="form-group">
+                        <label for="productD">Product Description: </label>
+                        <input class="form-control" type="text" id="productD"
+                               name="productD" placeholder="Enter the product description">
                     </div>
 
                     <div class="form-group">

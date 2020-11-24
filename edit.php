@@ -107,15 +107,15 @@
                                     echo "product price is empty";
                                     $success = False;
                                 }
-                                 if (!empty($_POST['description'])) {
-                                    $productPrice = $_POST['description'];
+                                 if (!empty($_POST['ProductDescription'])) {
+                                    $description = $_POST['ProductDescription'];
                                 } else {
-                                    echo "product price is empty";
+                                    echo "product description is empty";
                                     $success = False;
                                 }
                                 if ($success == True) {
                                     //"UPDATE `best`.`products` SET `product_name` = '$productName' WHERE (`product_id` = '$productID')";
-                                    $sql1 = "UPDATE products SET product_name='$productName' ,product_type='$productType' ,product_price='$productPrice', description='$description', WHERE product_id='$productID'";
+                                    $sql1 = "UPDATE products SET product_name='$productName' ,product_type='$productType' ,product_price='$productPrice', description='$description' WHERE product_id='$productID'";
 
                                     //$sql2 = "UPDATE best.products SET product_name='$productName' WHERE product_id ='$productID'";
                                     //echo $sql1;
@@ -123,11 +123,11 @@
                                         echo "Product has been updated";
                                         //echo $p;
                                     } else {
-                                        echo "Product is empty";
+                                        echo "Product is empty1";
                                         //echo "Error updating record: " . $conn->error;
                                     }
                                 } else {
-                                    echo "Product is empty";
+                                    echo "Product is empty2";
                                 }
                             }
                             ?>

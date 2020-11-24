@@ -42,19 +42,12 @@
                     <br> <br>
 
                     <?php
-                    $productID = "";
                     $productN = "";
                     $productT = "";
                     $productP = "";
+                    $productD = "";
                     $success = true;
 
-                    if (!empty($_POST["productID"])) {
-                        $productID = $_POST['productID'];
-                        $productID = sanitize_input($_POST["productID"]);
-                    } else {
-                        echo "Product ID is empty";
-                        $success = False;
-                    }
 
                     if (!empty($_POST["productN"])) {
                         $productN = $_POST['productN'];
@@ -79,12 +72,29 @@
                         echo "Product Price is empty";
                         $success = False;
                     }
+                    
+                       if (!empty($_POST["productD"])) {
+                        $productD = $_POST['productD'];
+                        $productD = sanitize_input($_POST["productD"]);
+                    } else {
+                        echo "Product Description is empty";
+                        $success = False;
+                    }
 
                     if ($success) {
-                        saveMemberToDB();
+                        //saveMemberToDB();
                         //echo "<h4>Product added successfully!</h4>";
-//              first character of input will be caps
-                        echo "<p>Redirecting back" . ".";
+                        $sql = "INSERT INTO products (product_name, product_type, product_price, description) VALUES ('$productN', '$productT', '$productP', '$productD')";
+                        echo $sql;
+                        if (mysqli_query($conn, $sql)) {
+                            echo "added successfully";
+                             echo "<p>Redirecting back" . ".";
+                        header("refresh:5;url=edit_product.php");
+                        } else {
+                            echo "field is empty or unavailable. ";
+                        }
+                        
+                       
                         
                         echo "<p> </p>";
                     } else {
@@ -101,33 +111,7 @@
                         return $data;
                     }
 
-                    function saveMemberToDB() {
-                        global $productID, $productN, $productT, $productP, $success;
-                        // Create database connection.
-                        $config = parse_ini_file('../../private/db-config.ini');
-                        $conn = new mysqli($config['servername'], $config['username'],
-                                $config['password'], $config['dbname']);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            $errorMsg = "Connection failed: " . $conn->connect_error;
-                            $success = false;
-                        } else {
-                            // Prepare the statement:
-                            $stmt = $conn->prepare("INSERT INTO products (product_id, product_name, product_type, product_price) VALUES (?,?, ?, ?)");
-                            // Bind & execute the query statement:
-                            $stmt->bind_param("issi", $productID, $productN, $productT, $productP, $pwd_hashed);
-                            if (!$stmt->execute()) {
-                                $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                                $success = false;
-                            }
-                            else{
-                                echo "successful updated product";
-                                header("refresh:5;url=edit_product.php");
-                            }
-                            $stmt->close();
-                        }
-                        $conn->close();
-                    }
+                    
                     ?>
                     <br> <br>
                 </main>
