@@ -15,43 +15,64 @@
 
             <!-- Header -->
             <?php include "header.inc.php"; ?>
-
+            <?php session_start(); ?>
             <!-- Main -->
             <article id="main">
 
                 <header class="special container">
-                    <span class="icon solid fa-user-alt"></span>
-                    <h2>SIGN UP</h2>
-                    <p>Already a member with us? Head to the <a href="login.php">Login </a>page now!</p>
+                    <span class="icon solid fa-envelope"></span>
+                    <h2><?php echo "Edit your account";
+                                echo '<p>Here are your details, '. $_SESSION['username'].'</p>';?></h2>   
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
                     <div class="content">
+                        <form action="" method="post">
+                            <?php
+                        session_start();
+                        
+                        $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $validUser = $_SESSION['username'];
+                        $sql = 'SELECT * FROM user_accounts WHERE username = "'.$validUser.'"';
+                        $result = $conn->query($sql);
+                        if ($result > 0){
+                            $row = $result->fetch_assoc();
+                        }
+                        ?>
+                            <div class="row gtr-50">
+                                <div class="col-6 col-12-mobile">
+                                    <input type="text" name="username" value="<?php echo $row['username']; ?>" />
+                                </div>
+                                <div class="col-6 col-12-mobile">
+                                    <input type="email" name="email" value="<?php echo $row['email'];?>" />
+                                </div>
+                                <div class="col-6 col-12-mobile">
+                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Your New Password" />
+                                </div>
+                                <div class="col-6 col-12-mobile">
+                                    <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm your New Password" />
+                                </div>
+                                <div class="col-12">
+                                    <ul class="buttons">
+                                        <li><input type="submit" name="submit_edit" class="special" value="Submit" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
                         <?php
+                        if (isset($_POST['submit_edit']))
+                        {
+                        session_start();
+                        //ini_set('display_errors', 1);
+                        //ini_set('display_startup_errors', 1);
+                        //error_reporting(E_ALL);
                         $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
-
-                        //Function to ensure that input contains only alphabets and spaces (if any)
-                        function check_firstname($text) {
-                            if (isset($text)) {
-                                if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) { //a-z A-Z and spaces only
-                                    return TRUE;
-                                }
-                                return FALSE;
-                            }
-                        }
-
-                        //Function to ensure that input contains only alphabets and spaces (if any)
-                        function check_lastname($text) {
-                            if (isset($text)) {
-                                if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) { //a-z A-Z and spaces only
-                                    return TRUE;
-                                }
-                                return FALSE;
-                            }
-                        }
 
                         //Function to ensure that password meets our requirements
                         function check_password($text) {
@@ -92,18 +113,6 @@
                             $success = false;
                         }
 
-                        //Check First Name
-                        if (!check_firstname($_POST["first_name"])) {
-                            $errorMsg .= "<p>Please input a valid first name. A valid name only contain alphabetic letter and spaces.</p>";
-                            $success = false;
-                        }
-
-                        //Check Last Name
-                        if (!check_lastname($_POST["last_name"])) {
-                            $errorMsg .= "<p>Please input a valid last name. A valid name only contain alphabetic letter and spaces.</p>";
-                            $success = false;
-                        }
-
                         //Check Email
                         if (!check_email($_POST["email"])) {
                             $errorMsg .= "<p>Please input a valid email address.</p>";
@@ -130,28 +139,38 @@
                         }
 
                         //Function to write user account credentials to DB
-                        function saveMemberToDB() {
-                            global $username, $first_name, $last_name, $email, $hashed_password, $errorMsg, $member, $success;
-                            // Create database connection.
-                            $config = parse_ini_file('./../private/dbconfig.ini');
-                            $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
+                        function updateMemberToDB() {
+                            global $username, $email, $hashed_password, $errorMsg, $success;
+                            $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                            
+                            $validUser = $_SESSION['username'];
+                            $sql = 'SELECT * FROM user_accounts WHERE username = "' . $validUser . '"';
+                            $result = $conn->query($sql);
+                            if ($result > 0) {
+                            $row = $result->fetch_assoc();}
+                                // Create database connection.
+                            
                             // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
                             } else {
-                                $sql = $conn->prepare("INSERT INTO user_accounts (username, first_name, last_name, email, password) VALUES (?,?,?,?,?)");
-                                $sql->bind_param("sssss", $username, $first_name, $last_name, $email, $hashed_password);
+                                $sql = "UPDATE user_accounts SET username = '$username' , email = '$email' , password = '$hashed_password'"
+                                        . "WHERE user_id = ".$row["user_id"];
+                               
                                 //$sql = "INSERT INTO user_accounts (username, first_name, last_name, email, password, membership)";
                                 //$sql .= " VALUES ('$username', '$first_name', '$last_name', '$email', '$hashed_password', '$member')";
                                 // Execute the query
-                                if (!$sql->execute()) {
-                                    $errorMsg = "Database error: " . $conn->error;
-                                    $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
-                                    $success = false;
+                                if (mysqli_query($conn,$sql)) {
+                                    $success = true;
+                                    echo "<h4>Your details have been updated, " . $username . "</54>";
+                                    
+                                    
                                 }
                                 else {
-                                    $success = true;
+                                    $errorMsg = "Database error: " . $conn->error;
+                                    $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
+                                    $success = false;   
                                 }
                                 $sql->close();
                             }
@@ -160,25 +179,19 @@
 
                         $email = sanitize_input($_POST["email"]);
                         $username = sanitize_input($_POST["username"]);
-                        $first_name = sanitize_input($_POST["first_name"]);
-                        $last_name = sanitize_input($_POST["last_name"]);
                         $password = sanitize_input($_POST["password"]);
                         $confirm_password = sanitize_input($_POST["confirm_password"]);
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                        saveMemberToDB();
+                        updateMemberToDB();
                         
-                        if ($success) {
-                            echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
-                            echo "<p>Your username is: " . $username . "</p>";
-                            echo '<a href="login.php" class="button">Login</a>';
-                        } else {
-                            echo "<h2><strong>Oops!</strong></h2>";
-                            echo "<h3>The following input errors were detected:</h3>";
-                            echo "<p>" . $errorMsg . "</p>";
-                            echo '<button onclick="history.go(-1);">BACK</button>';
+                        header("Location: /ICT1004/logout.php");
+                        }
+                        else{
+                            echo 'Not working';
                         }
                         ?>
+                        
                     </div>
 
                 </section>
@@ -186,7 +199,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

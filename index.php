@@ -53,7 +53,7 @@
                     </h2>
                     <p><strong>BEST</strong> was launched in 1997 by a group of students who were simply passionate for visual design.
                         <br />
-                        Now, it's an official company providing professional visual design services to corproate entities and individual requests!
+                        Now, it's an official company providing professional visual design services to corporate entities and individual requests!
                         <br /></p>
                 </header>
 
@@ -66,13 +66,16 @@
                                 <h2>Behold the <strong>RESULTS</strong> that just make you WOW.</h2>
                             </header>
                             <p>With our many years of experience, we guarantee that you'll be satisfied with our service and AFTER service.
-                            To date, we have served over 300 happy clients!</p>
+                                To date, we have served over 300 happy clients!</p>
 
                         </div>
                         <div class="col-4 col-12-narrower imp-narrower">
 
                             <ul class="featured-icons">
-                                <li><span class="icon solid fa-laptop"></span></li>
+                                <li><span class="icon fa-clock"><span class="label">Feature 1</span></span></li>
+                                <li><span class="icon solid fa-film"><span class="label">Feature 2</span></span></li>
+                                <li><span class="icon solid fa-laptop"><span class="label">Feature 3</span></span></li>
+                                <li><span class="icon solid fa-lock"><span class="label">Feature 4</span></span></li>
                             </ul>
 
                         </div>
@@ -89,7 +92,7 @@
                                 <header>
                                     <h3>WE PROMISE</h3>
                                 </header>
-                                <p>Some content here.</p>
+                                <!--<p>Some content here.</p>-->
                             </section>
 
                         </div>
@@ -100,7 +103,7 @@
                                 <header>
                                     <h3>WE DESIGN</h3>
                                 </header>
-                                <p>Some content here.</p>
+                                <!--<p>Some content here.</p>-->
                             </section>
 
                         </div>
@@ -111,7 +114,7 @@
                                 <header>
                                     <h3>WE DELIVER</h3>
                                 </header>
-                                <p>Some content here.</p>
+                                <!--<p>Some content here.</p>-->
                             </section>
 
                         </div>
@@ -123,7 +126,7 @@
 
                     <header>
                         <h2>Our <strong>Vision </strong> and <strong>Mission </strong></h2>
-                        <p>Some content here.</p>
+                        <p>We aim to be the leading visual service provider in Asia and change the world, one story at a time</p>
                     </header>
 
                 </section>

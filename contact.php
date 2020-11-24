@@ -26,32 +26,33 @@
                 </header>
 
                 <section class="wrapper style4 special container medium">
-
                     <!-- Content -->
                     <div class="content">
-                        <form>
+                        <form action= "contact_process.php" method="post">
                             <div class="row gtr-50">
                                 <div class="col-6 col-12-mobile">
-                                    <input type="text" name="name" placeholder="Name" />
+                                    <input type="text" name="name" required name="name" placeholder="Name" />
                                 </div>
                                 <div class="col-6 col-12-mobile">
-                                    <input type="text" name="email" placeholder="Email" />
+                                    <input type="text" name="email" required name="email" pattern="[a-z0-9._%+-]+@[^@\s]+\.[^@\s]+" placeholder="Email" />
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" name="subject" placeholder="Subject" />
+                                    <input type="text" name="subject" required name="subject" placeholder="Subject" />
                                 </div>
                                 <div class="col-12">
-                                    <textarea name="message" placeholder="Message" rows="7"></textarea>
+                                    <input type="text" name="Division" required name="Division" placeholder="Which Division would you like to contact?" />
+                                </div>                                
+                                <div class="col-12">
+                                    <textarea name="message" placeholder="Message" equired name="message" rows="7"></textarea>
                                 </div>
                                 <div class="col-12">
                                     <ul class="buttons">
                                         <li><input type="submit" class="special" value="Send Message" /></li>
                                     </ul>
-                                </div>
+                                </div>                                
                             </div>
                         </form>
                     </div>
-
                 </section>
 
             </article>
