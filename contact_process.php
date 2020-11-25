@@ -29,7 +29,7 @@
                                 } else {
                                     // Prepare the statement:
 
-                                    $stmt = $conn->prepare("INSERT INTO Contact_form (name, email, subject, Division, message) VALUES (?, ?, ?, ?, ?)");
+                                    $stmt = $conn->prepare("INSERT INTO contact_form (name, email, subject, Division, message) VALUES (?, ?, ?, ?, ?)");
                                      // Bind & execute the query statement:
                                      $stmt->bind_param("sssss", $name, $email, $subject, $Division, $message);
                                      if (!$stmt->execute())
