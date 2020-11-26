@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <?php include "if_admin.php"; ?>
     </head>
 
     <body class="index is-preload">
@@ -31,10 +32,6 @@
                     </div>-->
 
                     <?php
-                    $servername = "localhost";
-                    $username = "username";
-                    $password = "password";
-                    $dbname = "myDB";
 
 // Create connection
                     $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');

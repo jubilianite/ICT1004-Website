@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
     </head>
 
     <body class="index is-preload">
@@ -146,11 +145,10 @@
                                 //$sql .= " VALUES ('$username', '$first_name', '$last_name', '$email', '$hashed_password', '$member')";
                                 // Execute the query
                                 if (!$sql->execute()) {
-                                    $errorMsg = "Database error: " . $conn->error;
-                                    $errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
+                                    //$errorMsg = "Database error: " . $conn->error;
+                                    //$errorMsg = "Execute failed: (" . $sql->errno . ") " . $sql->error;
                                     $success = false;
-                                }
-                                else {
+                                } else {
                                     $success = true;
                                 }
                                 $sql->close();
@@ -167,14 +165,14 @@
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                         saveMemberToDB();
-                        
+
                         if ($success) {
                             echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
-                            echo "<h3>The following input errors were detected:</h3>";
+                            echo "<h3>Sign Up failed for some reason.</h3>";
                             echo "<p>" . $errorMsg . "</p>";
                             echo '<button onclick="history.go(-1);">BACK</button>';
                         }
@@ -186,7 +184,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

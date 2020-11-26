@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
+        <?php include "if_loggedin.php"; ?>
     </head>
 
     <body class="index is-preload">
@@ -14,17 +14,10 @@
         <div id="page-wrapper">
 
             <!-- Header -->
-            <?php include "header.inc.php"; ?>
-            <?php
-            $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // Sandbox Paypal API URL
-            $paypal_id = 'ict1004best@gmail.com'; // Business Email ID 
-            $payment_cancel = 'http://54.157.165.148/payment_cancel.php';
-            $payment_success = 'http://54.157.165.148/payment_success.php';
+            <?php 
+            include "header.inc.php";
+            require_once "paypal_config.php";
             $_SESSION['product_name'] = $_POST['product_name']; //We'll need it later after payment is successful
-            //$_SESSION['product_type'] = $_POST['product_type']; //We'll need it later after payment is successful
-            //$item_name = trim($_POST['product_name']) . " " . trim($_POST['product_type']); 
-            //$_SESSION['item_name'] = $item_name;
-            //It should show something like BEST Video Editing Basic Package
             $amount = $_POST['product_price'];
             ?>
 
@@ -32,8 +25,8 @@
             <article id="main">
 
                 <header class="special container">
-                    <span class="icon solid fa-film"></span>
-                    <h2><?php echo $item_name ?></h2>
+                    <span><img src="https://www.flaticon.com/svg/static/icons/svg/1/1687.svg" alt="" style="width:10%;"/></span>
+                    <h2>Order Confirmation</h2>
 
                 </header>
 
@@ -42,10 +35,6 @@
                     <!-- Content -->
                     <div class="content">
                         <section>
-                            <a href="#" class="image featured"><img src="images/videoediting.jpg" alt="" /></a>
-                            <header>
-                                <h3><strong>Order Confirmation</strong></h3>
-                            </header>
                             <?php echo "<h4>" . $_POST['product_name'] . "</h4>"?>
                             <?php echo "<p>" . $_POST['description'] . "</p>"?>
                             <form action="<?php echo $paypal_url ?>" method="post" name="frmPayPal1">

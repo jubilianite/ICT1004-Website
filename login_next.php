@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
-
     </head>
 
     <body class="index is-preload">
@@ -49,7 +48,7 @@
                             $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                             // Check connection
                             if ($conn->connect_error) {
-                                $errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>";
+                                //$errorMsg .= "<p>Connection failed: " . $conn->connect_error . "</p>";
                                 //$errorMsg .= "Execute failed: ( " . $conn->errno . " ) " . $conn->error;
                                 $success = false;
                             } else {
@@ -63,7 +62,7 @@
                                     $row = $result->fetch_assoc();
                                     $hashed_password = $row["password"];
                                     // Check if the password matches:
-                                    if (!password_verify($_POST["password"], $hashed_password)) { //Enhancement: Change post to $password after sanitized.
+                                    if (!password_verify($password, $hashed_password)) {
                                         $errorMsg .= "User not found or password doesn't match...";
                                         $success = false;
                                     } else {
@@ -97,9 +96,9 @@
                                 authenticate($username, $password);
                             }
                         } else {
-                                $errorMsg .= "CAPTCHA verification failed, please try again.";
-                                $success = false;
-                            }
+                            $errorMsg .= "CAPTCHA verification failed, please try again.";
+                            $success = false;
+                        }
 
                         if ($success) {
                             echo "<p>Welcome back, " . $_SESSION['username'] . "</p>";
@@ -107,7 +106,7 @@
                             header("refresh:5;url=index.php");
                         } else {
                             echo "<h2><strong>Oops!</strong></h2>";
-                            echo "<h3>The following input errors were detected:</h3>";
+                            echo "<h3>Login failed for some reason.</h3>";
                             echo "<p>" . $errorMsg . "</p>";
                             echo '<button onclick="history.go(-1);">BACK</button>';
                         }

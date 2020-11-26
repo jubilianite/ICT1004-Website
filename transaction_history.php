@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
-
+        <?php include "if_loggedin.php"; ?>
     </head>
 
     <body class="index is-preload">
@@ -38,25 +38,24 @@
                         //$password = "password";
                         //$dbname = "best";
                         // Create connection$servername
-                        $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                        $config = parse_ini_file('./../private/dbconfig.ini');
+                        $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                         // Check connection
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
                         //$validUser = mysql_real_escape_string($_SESSION['username']);
                         $validUser = $_SESSION['username'];
-                        $sql = 'SELECT * FROM transaction_history WHERE username = "'.$validUser.'"';
+                        $sql = 'SELECT * FROM transaction_history WHERE username = "' . $validUser . '"';
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
-                            echo "<table><tr><th>ID</th><th>Name</th><th>Package</th><th>Service</th><th>Paid Amount</th></tr>";
+                            echo "<table><tr><th>ID</th><th>Product</th><th>Date & Time</th><th>Paid Amount</th></tr>";
                             // output data of each row
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr><td>" . $row["transaction_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["package"] . "</td><td>" . $row["service"] ."</td><td>" . $row["paid_amount"] . "</td></tr>";
+                                echo "<tr><td>" . $row["transaction_id"] . "</td><td>" . $row["product_name"] . "</td><td>" . $row["date_and_time"] . "</td><td>" . $row["paid_amount"] . "</td></tr>";
                             }
                             echo "</table>";
-                            
-    
                         } else {
                             echo "0 results";
                         }
@@ -71,7 +70,7 @@
             </article>
 
             <!-- Footer -->
-            <?php include "footer.inc.php"; ?>
+<?php include "footer.inc.php"; ?>
 
         </div>
 

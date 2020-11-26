@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
+        <?php include "if_loggedin.php"; ?>
     </head>
 
     <body class="index is-preload">
@@ -51,7 +51,7 @@
                         <?php
                         $config = parse_ini_file('./../private/dbconfig.ini');
                         $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                        $product_name = "Video Editing".'%'; //Declare Product Name Here
+                        $product_name = "Video Editing" . '%'; //Declare Product Name Here
 
                         if ($conn->connect_error) {
                             $errorMsg = "Connection failed: " . $conn->connect_error;
@@ -63,19 +63,18 @@
                             //$result = $sql->execute(); //Bind Data to $result
                             $sql->bind_result($product_id, $product_name, $product_price, $description) or die();
 
-                                while ($sql->fetch()) {
-                                    echo '<div class="col-4 col-12-narrower"><section>'; //Declare Header of DIV
-                                    echo '<header><h3><strong>' . $product_name . '</strong></h3></header>';
-                                    echo '<p>' . $description . '</p>';
-                                    echo '<footer><form action="videoediting_payment.php" method="post">';
-                                    echo '<input type="hidden" name="product_id" value="' . $product_id . '">';
-                                    echo '<input type="hidden" name="product_name" value="' . $product_name . '">';
-                                    echo '<input type="hidden" name="product_price" value="' . $product_price . '">';
-                                    echo '<input type="hidden" name="description" value="' . $description . '">';
-                                    echo '<ul class="buttons"><li><button class="buttons" type="submit">$' . $product_price . '</button></li></ul>';
-                                    echo '</form></footer>';
-                                    echo '</section></div>';
-                                
+                            while ($sql->fetch()) {
+                                echo '<div class="col-4 col-12-narrower"><section>'; //Declare Header of DIV
+                                echo '<header><h3><strong>' . $product_name . '</strong></h3></header>';
+                                echo '<p>' . $description . '</p>';
+                                echo '<footer><form action="order_confirmation.php" method="post">';
+                                echo '<input type="hidden" name="product_id" value="' . $product_id . '">';
+                                echo '<input type="hidden" name="product_name" value="' . $product_name . '">';
+                                echo '<input type="hidden" name="product_price" value="' . $product_price . '">';
+                                echo '<input type="hidden" name="description" value="' . $description . '">';
+                                echo '<ul class="buttons"><li><button class="buttons" type="submit">$' . $product_price . '</button></li></ul>';
+                                echo '</form></footer>';
+                                echo '</section></div>';
                             }
                         }
                         ?>
@@ -86,7 +85,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

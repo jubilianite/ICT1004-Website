@@ -1,5 +1,4 @@
 <?php
-
 //For troubleshooting purposes
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
@@ -17,27 +16,34 @@ session_start();
 if (!(isset($_SESSION['logged_in']))) {
     $if_loggedin = "<li>
                     <a href='/login.php' class='button primary'>Login Here!</a>
+                    <ul>
+                        <li><a href='signup.php'>Sign Up Here!</a></li>
                     </li>";
 } else if ($_SESSION['role'] == "admin") {
     $if_loggedin = "<li>
                     <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
                         <ul>
                         <li><a href='/profile.php'>Profile</a></li>
-                        <li><a href='/adminpanel.php'>Admin Panel</a></li>
-                        <li><a href='/transaction_history.php'>Transaction History</a></li>
-                        <li><a href='/edit_product.php'>Edit Product</a></li> 
-                        <li><a href='/logout.php'>Log Out</a></li>
+                        <li class='submenu'><a href='adminpanel.php'>Admin Panel</a>
+                        <ul>
+                        <li><a href='products.php'>Edit Products</a></li>
                         </ul>
-                    </li>";
+                    </li>
+
+    <li><a href = '/transaction_history.php'>Transaction History</a></li>
+    <li><a href = '/edit_product.php'>Edit Product</a></li>
+    <li><a href = '/logout.php'>Log Out</a></li>
+    </ul>
+    </li>";
 } else {
     $if_loggedin = "<li>
-                    <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
-                        <ul>
-                        <li><a href='/profile.php'>Profile</a></li>
-                        <li><a href='/transaction_history.php'>Transaction History</a></li>
-                        <li><a href='/logout.php'>Log Out</a></li>
-                        </ul>
-                    </li>";
+    <a href = '/profile.php' class = 'button primary'>Hi " . $_SESSION['username'] . "!</a>
+    <ul>
+    <li><a href = '/profile.php'>Profile</a></li>
+    <li><a href = '/transaction_history.php'>Transaction History</a></li>
+    <li><a href = '/logout.php'>Log Out</a></li>
+    </ul>
+    </li>";
 }
 ?>
 
@@ -54,18 +60,19 @@ if (!(isset($_SESSION['logged_in']))) {
                 <!--
                 <li class="submenu">
                     <a href="#">Submenu</a>
-                    <ul>
-                        <li><a href="#">Dolore Sed</a></li>
-                        <li><a href="#">Consequat</a></li>
-                        <li><a href="#">Lorem Magna</a></li>
-                        <li><a href="#">Sed Magna</a></li>
-                        <li><a href="#">Ipsum Nisl</a></li>
-                    </ul>
-                </li>
+    <ul>
+    <li><a href = "#">Dolore Sed</a></li>
+    <li><a href = "#">Consequat</a></li>
+    <li><a href = "#">Lorem Magna</a></li>
+    <li><a href = "#">Sed Magna</a></li>
+    <li><a href = "#">Ipsum Nisl</a></li>
+    </ul>
+    </li>
                 -->
             </ul>
         </li>
-<?php echo $if_loggedin; ?>
+        <?php echo $if_loggedin;
+        ?>
 
         <!--<ul>
             <li><a href="left-sidebar.html">Left Sidebar</a></li>

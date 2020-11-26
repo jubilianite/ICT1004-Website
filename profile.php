@@ -8,6 +8,7 @@
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <?php include "if_loggedin.php"; ?>
     </head>
 
     <body class="index is-preload">
@@ -25,9 +26,10 @@
                     <span class="icon solid fa-user-alt"></span>
                     <?php session_start();
                     ?>
-                    <h2><?php echo $_SESSION['username']. "'s Profile Page"; 
-                    echo '<br/><a href="edit_account.php"><span class ="material-icons md-light" style="font-size:1em">edit</span></a>';?></h2>
-                     
+                    <h2><?php echo $_SESSION['username'] . "'s Profile Page";
+                    echo '<br/><a href="edit_account.php"><span class ="material-icons md-light" style="font-size:1em">edit</span></a>';
+                    ?></h2>
+
                 </header>
 
                 <section class="wrapper style4 special container medium">
@@ -36,45 +38,40 @@
                     <div class="content">
                         <?php
                         session_start();
-                        
+
                         $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
                         $validUser = $_SESSION['username'];
-                        $sql = 'SELECT * FROM user_accounts WHERE username = "'.$validUser.'"';
+                        $sql = 'SELECT * FROM user_accounts WHERE username = "' . $validUser . '"';
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
-                        echo "<p>Welcome back, " . $_SESSION['last_name'] . ", you are a " .$row["role"]. " with us.</p>";
+                        echo "<p>Welcome back, " . $_SESSION['last_name'] . ", you are a " . $row["role"] . " with us.</p>";
                         //$servername = "best";
                         //$username = "username";
                         //$password = "password";
                         //$dbname = "best";
                         // Create connection$servername
-                        
                         // Check connection
-                        
                         //$validUser = mysql_real_escape_string($_SESSION['username']);
-                        
-                        $sql = 'SELECT SUM(paid_amount) FROM transaction_history WHERE username = "'.$validUser.'"';
+
+                        $sql = 'SELECT SUM(paid_amount) FROM transaction_history WHERE username = "' . $validUser . '"';
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
                             $amount = $row['SUM(paid_amount)'] + 0;
 
-                            echo "<p>Amount Contributed " .$amount. ".</p>";
-                            
-                            if($amount > 10000){
+                            echo "<p>Amount Contributed " . $amount . ".</p>";
+
+                            if ($amount > 10000) {
                                 echo "<p>You are a Premium spender.</p>";
-                            }
-                            else if ($amount > 5000){
+                            } else if ($amount > 5000) {
                                 echo "<p>You are a Advanced spender.</p>";
-                            }
-                            else {
+                            } else {
                                 echo "<p>You are a basic spender.</p>";
                             }
-                            
                         } else {
                             echo "0 results";
                         }
@@ -89,7 +86,7 @@
             </article>
 
             <!-- Footer -->
-            <?php include "footer.inc.php"; ?>
+<?php include "footer.inc.php"; ?>
 
         </div>
 
