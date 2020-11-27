@@ -65,6 +65,7 @@
                                 <div class="col-12">
                                     <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm your password" />
                                 </div>                                
+                                <p>Your password must have at least 8 characters with at least one alphabet and one number.</p>
                                 
                                 <p>By logging in, you agree to the <a href="#">terms and conditions</a> of BEST Co.</p>
                             </div>

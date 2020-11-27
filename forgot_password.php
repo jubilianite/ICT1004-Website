@@ -23,32 +23,32 @@
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
                     <h2>Forgot Your Password?</h2>
-                    <p>Please fill in your Email & Username:</p>                    
+                    <p>Please fill in the necessary details below:</p>                    
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
                     <div class="content">
-                        <form action="password_reset.php" method="post">
+                        <form action="forgot_password_next.php" method="post">
                             <div class="row gtr-50">
                                 <strong>Email:</strong>
                                 <div class="col-12">
-                                    <input type="text" name="email" id="email" required name="email" pattern="[a-zA-Z0-9._%+-]+@[^@\s]+\.[^@\s]+"  placeholder="Email" />                                    
+                                    <input type="text" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[^@\s]+\.[^@\s]+"  placeholder="Email" />                                    
                                 </div>                                
                                 <strong>Username:</strong>
                                 <div class="col-12">                                    
-                                    <input type="text" name="username" id="username" required name="username" placeholder="Username" />
+                                    <input type="text" name="username" id="username" required placeholder="Username" />
                                 </div>                                
                                 <strong>New Password:</strong>
                                 <div class="col-12">
                                     <input type="password" name="password" required minlength="8" id="password" placeholder="New password" />
-                                    <br>
                                 </div>
                                 <strong>Confirm New Password:</strong>
                                 <div class="col-12">
-                                    <input type="password" name="cfmpassword" required minlength="8" id="cfmpassword" placeholder="Confirm your password" />
-                                </div>                                
+                                    <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm your password" />
+                                </div>            
+                                <p>Your password must have at least 8 characters with at least one alphabet and one number.</p>
                                 <div class="col-12">
                                     <ul class="buttons">
                                         <li><input type="submit" class="special" value="Submit" /></li>

@@ -50,14 +50,27 @@
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
-                            echo "<table><tr><th>ID</th><th>Product</th><th>Date & Time</th><th>Paid Amount</th></tr>";
+                            echo "<table><tr><th>ID / Product</th><th>Date & Time</th><th>Paid Amount</th></tr>";
                             // output data of each row
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr><td>" . $row["transaction_id"] . "</td><td>" . $row["product_name"] . "</td><td>" . $row["date_and_time"] . "</td><td>" . $row["paid_amount"] . "</td></tr>";
+                                echo
+                                "<tr>"
+                                . "<td>"
+                                . $row["transaction_id"]
+                                . "</td>"
+                                . '<td rowspan="2">'
+                                . $row["date_and_time"]
+                                . '</td><td rowspan="2">'
+                                . $row["paid_amount"]
+                                . "</td></tr>"
+                                . "<tr><td>"
+                                . $row["product_name"]
+                                . "</td></tr>"
+                                . "<tr><td>&nbsp;</td></tr>"; //1 Empty Row
                             }
                             echo "</table>";
                         } else {
-                            echo "0 results";
+                            echo "You have no transactions with us at the moment";
                         }
 
                         $conn->close();
@@ -70,7 +83,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

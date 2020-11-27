@@ -45,17 +45,17 @@
                             <div class="row gtr-50">
 
                                 <div class="col-6 col-12-mobile">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="first_name" value="<?php echo $row['first_name']; ?>" />
+                                    <strong>New Password:</strong>
+                                    <input type="password" name="password" required minlength="8" id="password" placeholder="New Password" />
                                 </div>
                                 <div class="col-6 col-12-mobile">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="last_name" required  value="<?php echo $row['last_name']; ?>"/>
+                                    <strong>Confirm New Password:</strong>
+                                    <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm New Password"/>
                                 </div>
-
+                                <p>Your password must have at least 8 characters with at least one alphabet and one number.</p>
                                 <div class="col-12">
                                     <ul class="buttons">
-                                        <li><input type="submit" name="submit_edit" class="special" value="Change Name" /></li>
+                                        <li><input type="submit" name="submit_edit" class="special" value="Change Password" /></li>
                                     </ul>
                                 </div>                                
                             </div>
@@ -67,19 +67,28 @@
                         $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
 
-                        function check_last_name($text) {
+                        function check_password($text) {
                             if (isset($text)) {
-                                if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) {
-                                    return TRUE;
-                                    $success = true;
+                                if (empty($text)) {
+                                    return FALSE;
                                 }
-                                return FALSE;
+                                if (preg_match("/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/", $text) == 0) { //Password must be at least 8 characters and must contain at least one alphabet and one digit
+                                    return FALSE;
+                                }
+                                return TRUE;
                             }
                         }
 
-                        //Check Username
-                        if (!check_last_name($_POST["last_name"])) {
-                            echo '<script>alert("Please input a valid last name.")</script>';
+                        //Check if passwords match
+                        if ($_POST["password"] != $_POST["confirm_password"]) {
+                            echo '<script>alert("Your passwords do not match.")</script>';
+                            $success = false;
+                        }
+
+                        //Check Password
+                        if (!check_password($_POST["password"])) {
+
+                            echo '<script>alert("Your new password do not meet our requirements. Please choose a different password.")</script>';
                             $success = false;
                         } else {
                             $success = true;
@@ -95,9 +104,12 @@
 
                         //Function to write user account credentials to DB
                         function updateMemberToDB() {
-                            global $errorMsg, $success, $first_name, $last_name;
+                            global $errorMsg, $success, $password, $confirm_password, $hashed_password;
                             $config = parse_ini_file('./../private/dbconfig.ini');
                             $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
+
+                            // Create database connection.
+                            // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
@@ -105,14 +117,13 @@
                             if ($success == false) {
                                 header("refresh:0;url=edit_profile.php");
                             } else if ($success == true) {
-                                $sql1 = "UPDATE user_accounts SET first_name = '$first_name' , last_name = '$last_name'"
+                                $sql1 = "UPDATE user_accounts SET password = '$hashed_password'"
                                         . "WHERE user_id = " . $_SESSION["user_id"];
 
                                 if (mysqli_query($conn, $sql1)) {
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
-                                    $_SESSION['first_name'] = $first_name;
-                                    $_SESSION['last_name'] = $last_name;
                                     header("refresh:0;url=edit_profile.php");
+                                    header("Location: edit_profile.php");
                                 } else {
                                     $errorMsg = "Database error: " . $conn->error;
                                     $errorMsg = "Execute failed: (" . $sql1->errno . ") " . $sql1->error;

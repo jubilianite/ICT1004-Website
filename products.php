@@ -29,7 +29,6 @@
 
         <div class="container">
             <h2>BEST Products & Services</h2>
-            <h3>Products & Services</h3>
             <p>Hello Admin, here are the list of your products.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <a class="btn btn-primary" href="add_products.php" role="button">Add Products</a>

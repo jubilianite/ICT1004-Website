@@ -29,7 +29,7 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
-                        $success = false; //By default: false   
+                        $success = true; //By default: false   
                         $errorMsg = ""; //By default: Empty
 
                         //Function to ensure that input contains only alphabets and spaces (if any)
@@ -37,8 +37,10 @@
                             if (isset($text)) {
                                 if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) { //a-z A-Z and spaces only
                                     return TRUE;
+                                    $success = true;
                                 }
                                 return FALSE;
+                                $success = false;
                             }
                         }
 
@@ -47,8 +49,10 @@
                             if (isset($text)) {
                                 if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) { //a-z A-Z and spaces only
                                     return TRUE;
+                                    $success = true;
                                 }
                                 return FALSE;
+                                $success = false;
                             }
                         }
 
@@ -57,11 +61,14 @@
                             if (isset($text)) {
                                 if (empty($text)) {
                                     return FALSE;
+                                    $success = false;
                                 }
                                 if (preg_match("/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/", $text) === 0) { //Password must be at least 8 characters and must contain at least one alphabet and one digit
                                     return FALSE;
+                                    $success = false;
                                 }
                                 return TRUE;
+                                $success = true;
                             }
                         }
 
@@ -70,8 +77,10 @@
                             if (isset($text)) {
                                 if (!empty($text) && preg_match("/^[a-zA-Z0-9 ]{8,}/", $text)) { //check username 8 character & above
                                     return TRUE;
+                                    $success = true;
                                 }
                                 return FALSE;
+                                $success = false;
                             }
                         }
 
@@ -80,8 +89,10 @@
                             if (isset($text)) {
                                 if (!empty($text) && preg_match("/[a-zA-Z0-9_\-]+@(([a-zA-Z_\-])+\.)+[a-zA-Z]{2,4}/", $text)) { //check email if it is in the correct syntax
                                     return TRUE;
+                                    $success = true;
                                 }
                                 return FALSE;
+                                $success = false;
                             }
                         }
 
@@ -138,7 +149,7 @@
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
-                            } else {
+                            } else if ($success == true) {
                                 $sql = $conn->prepare("INSERT INTO user_accounts (username, first_name, last_name, email, password) VALUES (?,?,?,?,?)");
                                 $sql->bind_param("sssss", $username, $first_name, $last_name, $email, $hashed_password);
                                 //$sql = "INSERT INTO user_accounts (username, first_name, last_name, email, password, membership)";
@@ -166,11 +177,11 @@
 
                         saveMemberToDB();
 
-                        if ($success) {
+                        if ($success == true) {
                             echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
-                        } else {
+                        } else if ($success == false) {
                             echo "<h2><strong>Oops!</strong></h2>";
                             echo "<h3>Sign Up failed for some reason.</h3>";
                             echo "<p>" . $errorMsg . "</p>";

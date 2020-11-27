@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <?php include "if_loggedin.php"; ?>
     </head>
 
@@ -16,7 +15,6 @@
         <div id="page-wrapper">
 
             <!-- Header -->
-            <?php session_start(); ?>
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
@@ -24,11 +22,7 @@
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <?php session_start();
-                    ?>
-                    <h2><?php echo $_SESSION['username'] . "'s Profile Page";
-                    echo '<br/><a href="edit_account.php"><span class ="material-icons md-light" style="font-size:1em">edit</span></a>';
-                    ?></h2>
+                    <h2><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h2>
 
                 </header>
 
@@ -37,9 +31,8 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
-                        session_start();
-
-                        $conn = new mysqli('localhost', 'sqldev', 'P@ssw0rd123!', 'best');
+                        $config = parse_ini_file('./../private/dbconfig.ini');
+                        $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
@@ -47,14 +40,7 @@
                         $sql = 'SELECT * FROM user_accounts WHERE username = "' . $validUser . '"';
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
-                        echo "<p>Welcome back, " . $_SESSION['last_name'] . ", you are a " . $row["role"] . " with us.</p>";
-                        //$servername = "best";
-                        //$username = "username";
-                        //$password = "password";
-                        //$dbname = "best";
-                        // Create connection$servername
-                        // Check connection
-                        //$validUser = mysql_real_escape_string($_SESSION['username']);
+                        echo "<p>Hello! " . $_SESSION['first_name'] . " " . $_SESSION['last_name'] . ", thanks for staying as a " . $row["role"] . " with us!</p>";
 
                         $sql = 'SELECT SUM(paid_amount) FROM transaction_history WHERE username = "' . $validUser . '"';
                         $result = $conn->query($sql);
@@ -63,21 +49,21 @@
                             $row = $result->fetch_assoc();
                             $amount = $row['SUM(paid_amount)'] + 0;
 
-                            echo "<p>Amount Contributed " . $amount . ".</p>";
+                            echo "<p>Amount Contributed: $" . $amount . ".</p>";
 
                             if ($amount > 10000) {
-                                echo "<p>You are a Premium spender.</p>";
+                                echo "<p>Wow! You are a Premium spender with us!</p>";
                             } else if ($amount > 5000) {
-                                echo "<p>You are a Advanced spender.</p>";
+                                echo "<p>Wow! You are a Faithful spender with us!</p>";
                             } else {
-                                echo "<p>You are a basic spender.</p>";
+                                echo "<p>You are a Basic spender with us.</p>";
                             }
                         } else {
-                            echo "0 results";
+                            //echo "0 results";
                         }
-
                         $conn->close();
                         ?>
+                        <ul class="buttons"><li><a href="edit_profile.php" class="button primary">Edit Profile</a></li></ul>
 
                     </div>
 
@@ -86,7 +72,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

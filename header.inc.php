@@ -24,14 +24,14 @@ if (!(isset($_SESSION['logged_in']))) {
                     <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
                         <ul>
                         <li><a href='/profile.php'>Profile</a></li>
-                        <li class='submenu'><a href='adminpanel.php'>Admin Panel</a>
+                        <li class='submenu'><a href='#'>Admin Panel</a>
                         <ul>
-                        <li><a href='products.php'>Edit Products</a></li>
+                        <li><a href='products.php'>Products</a></li>
+                        <li><a href='transactions.php'>Transactions</a></li>
                         </ul>
                     </li>
 
     <li><a href = '/transaction_history.php'>Transaction History</a></li>
-    <li><a href = '/edit_product.php'>Edit Product</a></li>
     <li><a href = '/logout.php'>Log Out</a></li>
     </ul>
     </li>";

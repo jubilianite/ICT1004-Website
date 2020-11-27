@@ -14,7 +14,6 @@
 
         <div class="container">
             <h2>BEST Products & Services</h2>
-            <h3>Products & Services</h3>
             <p>Hello Admin, please update your product details accordingly.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>

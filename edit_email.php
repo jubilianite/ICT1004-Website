@@ -43,19 +43,14 @@
                             }
                             ?>
                             <div class="row gtr-50">
-
-                                <div class="col-6 col-12-mobile">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="first_name" value="<?php echo $row['first_name']; ?>" />
-                                </div>
-                                <div class="col-6 col-12-mobile">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="last_name" required  value="<?php echo $row['last_name']; ?>"/>
+                                <div class="col-12">
+                                    <strong>Email:</strong>
+                                    <input type="email" name="email" required value="<?php echo $row['email']; ?>"/>
                                 </div>
 
                                 <div class="col-12">
                                     <ul class="buttons">
-                                        <li><input type="submit" name="submit_edit" class="special" value="Change Name" /></li>
+                                        <li><input type="submit" name="submit_edit" class="special" value="Change Email" /></li>
                                     </ul>
                                 </div>                                
                             </div>
@@ -67,19 +62,19 @@
                         $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
 
-                        function check_last_name($text) {
+                        //Function to ensure that email is in the correct syntax
+                        function check_email($text) {
                             if (isset($text)) {
-                                if (!empty($text) && preg_match("/^([A-Za-z ])*$/", $text)) {
+                                if (!empty($text) && preg_match("/[a-zA-Z0-9_\-]+@(([a-zA-Z_\-])+\.)+[a-zA-Z]{2,4}/", $text)) { //check email if it is in the correct syntax
                                     return TRUE;
-                                    $success = true;
                                 }
                                 return FALSE;
                             }
                         }
 
-                        //Check Username
-                        if (!check_last_name($_POST["last_name"])) {
-                            echo '<script>alert("Please input a valid last name.")</script>';
+                        //Check Email
+                        if (!check_email($_POST["email"])) {
+                            echo '<script>alert("Please input a valid email.")</script>';
                             $success = false;
                         } else {
                             $success = true;
@@ -95,9 +90,12 @@
 
                         //Function to write user account credentials to DB
                         function updateMemberToDB() {
-                            global $errorMsg, $success, $first_name, $last_name;
+                            global $errorMsg, $success, $email;
                             $config = parse_ini_file('./../private/dbconfig.ini');
                             $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
+
+                            // Create database connection.
+                            // Check connection
                             if ($conn->connect_error) {
                                 $errorMsg = "Connection failed: " . $conn->connect_error;
                                 $success = false;
@@ -105,13 +103,12 @@
                             if ($success == false) {
                                 header("refresh:0;url=edit_profile.php");
                             } else if ($success == true) {
-                                $sql1 = "UPDATE user_accounts SET first_name = '$first_name' , last_name = '$last_name'"
+                                $sql1 = "UPDATE user_accounts SET email = '$email'"
                                         . "WHERE user_id = " . $_SESSION["user_id"];
 
                                 if (mysqli_query($conn, $sql1)) {
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
-                                    $_SESSION['first_name'] = $first_name;
-                                    $_SESSION['last_name'] = $last_name;
+                                    $_SESSION['email'] = $email;
                                     header("refresh:0;url=edit_profile.php");
                                 } else {
                                     $errorMsg = "Database error: " . $conn->error;
@@ -122,28 +119,28 @@
                                 }
                                 $sql1->close();
                             }
+                            $conn->close();
                         }
 
-                        $conn->close();
+                        $email = sanitize_input($_POST["email"]);
+                        $username = sanitize_input($_POST["username"]);
+                        $first_name = sanitize_input($_POST["first_name"]);
+                        $last_name = sanitize_input($_POST["last_name"]);
+                        $password = sanitize_input($_POST["password"]);
+                        $confirm_password = sanitize_input($_POST["confirm_password"]);
+                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                        updateMemberToDB();
                     }
-
-
-                    $email = sanitize_input($_POST["email"]);
-                    $username = sanitize_input($_POST["username"]);
-                    $first_name = sanitize_input($_POST["first_name"]);
-                    $last_name = sanitize_input($_POST["last_name"]);
-                    $password = sanitize_input($_POST["password"]);
-                    $confirm_password = sanitize_input($_POST["confirm_password"]);
-                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                    updateMemberToDB();
                     ?>
+
+
                 </section>
 
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

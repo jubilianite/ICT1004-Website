@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <?php include "if_loggedin.php"; ?>
     </head>
 
@@ -32,12 +31,6 @@
                     <!-- Content -->
                     <div class="content">
                         <?php
-                        $config = parse_ini_file('./../private/dbconfig.ini');
-                        $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-
                         global $first_name, $last_name, $username, $email, $user_id;
                         // Create database connection.
                         $config = parse_ini_file('./../private/dbconfig.ini');
