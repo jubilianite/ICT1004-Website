@@ -121,10 +121,10 @@
                         }
 
                         //Check Password // Temporarily disabled for convenience
-                        //if (!check_password($_POST["password"])) {
-                        //    $errorMsg .= "<p>Please input a valid password that contains at least 8 characters, one lower case letter, one upper case letter and one digit.</p>";
-                        //    $success = false;
-                        //}
+                        if (!check_password($_POST["password"])) {
+                            $errorMsg .= "<p>Please input a valid password that contains at least 8 characters, one lower case letter, one upper case letter and one digit.</p>";
+                           $success = false;
+                        }
                         //Check if passwords match
                         if ($_POST["password"] != $_POST["confirm_password"]) {
                             $errorMsg .= "<p>Your passwords do not match.</p>";

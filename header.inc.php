@@ -57,6 +57,8 @@ if (!(isset($_SESSION['logged_in']))) {
             <a>Services</a>
             <ul>
                 <li><a href="videoediting.php">Video Editing</a></li>
+                <li><a href="logodesign.php">Logo Design</a></li>
+                <li><a href="all_services.php">All Services</a></li>
                 <!-- May be useful if we want to expand, let's just keep this code here first -->
                 <!--
                 <li class="submenu">
