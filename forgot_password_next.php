@@ -32,6 +32,13 @@
                         $success = true;
                         $errorMsg = "";
 
+                        $email = sanitize_input($_POST["email"]);
+                        $username = sanitize_input($_POST["username"]);
+                        $password_raw = $_POST["password"];
+                        $password = sanitize_input($_POST["password"]);
+                        $confirm_password = sanitize_input($_POST["confirm_password"]);
+                        $hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
                         //Function to ensure that password meets our requirements
                         function check_password($text) {
                             if (isset($text)) {
@@ -193,12 +200,6 @@
                         }
 
                         $conn->close();
-
-                        $email = sanitize_input($_POST["email"]);
-                        $username = sanitize_input($_POST["username"]);
-                        $password = sanitize_input($_POST["password"]);
-                        $confirm_password = sanitize_input($_POST["confirm_password"]);
-                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                         ?>
 
                     </div>

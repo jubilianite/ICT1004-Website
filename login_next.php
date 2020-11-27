@@ -16,6 +16,12 @@
             <!-- Header -->
             <?php session_start(); ?>
             <?php include "header.inc.php"; ?>
+            <?php
+            if (isset($_SESSION['logged_in'])) {
+                header('Location: index.php');
+                //If not logged in, redirect to index.php
+            }
+            ?>
 
             <!-- Main -->
             <article id="main">

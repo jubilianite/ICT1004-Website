@@ -50,7 +50,7 @@
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
-                            echo "<table><tr><th>ID / Product</th><th>Date & Time</th><th>Paid Amount</th></tr>";
+                            echo "<table><tr><th>ID / Product</th><th>Date & Time</th><th>Paid Amount (SGD)</th></tr>";
                             // output data of each row
                             while ($row = $result->fetch_assoc()) {
                                 echo
