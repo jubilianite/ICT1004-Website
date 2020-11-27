@@ -43,6 +43,12 @@
             }
             ?>
 
+            <!-- Search Bar -->
+            <div class="md-form active-pink active-pink-2 mb-3 mt-0">
+                <input class="form-control" id="search" type="text" placeholder="Search here"> 
+            </div>
+            <br>
+
             <table class = "table">
                 <thead>
                     <tr>
@@ -54,7 +60,7 @@
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table">
                     <?php
                     $sql = 'SELECT * FROM products';
                     if ($result = $conn->query($sql)) {
@@ -104,7 +110,17 @@
                         });
                     }
                 </script>
-
+                <script>
+                    $(document).ready(function () {
+                        $("#search").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#table tr").filter(function () {
+                                $(this).toggle($(this).text()
+                                        .toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script> 
 
                 </tbody>
             </table>

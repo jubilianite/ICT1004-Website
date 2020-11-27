@@ -19,7 +19,7 @@ if (!(isset($_SESSION['logged_in']))) {
                     <ul>
                         <li><a href='signup.php'>Sign Up Here!</a></li>
                     </li>";
-} else if ($_SESSION['role'] == "admin") {
+} else if ($_SESSION['role'] == "Admin") {
     $if_loggedin = "<li>
                     <a href='/profile.php' class='button primary'>Hi " . $_SESSION['username'] . " !</a>
                         <ul>
@@ -28,6 +28,7 @@ if (!(isset($_SESSION['logged_in']))) {
                         <ul>
                         <li><a href='products.php'>Products</a></li>
                         <li><a href='transactions.php'>Transactions</a></li>
+                        <li><a href='user_accounts.php'>User Accounts</a></li>
                         </ul>
                     </li>
 

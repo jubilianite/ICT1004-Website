@@ -28,10 +28,11 @@
     <body>
 
         <div class="container">
-            <h2>BEST Transactions</h2>
-            <p>Hello Admin, here your transactions.</p>
+            <h2>BEST User Accounts</h2>
+            <p>Hello Admin, here are the list of your registered users.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
+
 
             <?php
             $config = parse_ini_file('./../private/dbconfig.ini');
@@ -50,45 +51,37 @@
             <table class = "table">
                 <thead>
                     <tr>
-                        <th>Transaction ID</th>
-                        <th>Date & Time</th>
+                        <th>User ID</th>
                         <th>Username</th>
-                        <th>User Email</th>
-                        <th>Product/Service Name</th>
-                        <th>Paid Amount (SGD)</th>
-                        <th>Payment Method</th>
-                        <th>Status</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="table">
                     <?php
-                    $sql = 'SELECT * '
-                            . 'FROM user_accounts, transaction_history '
-                            . 'WHERE role ="member" AND user_accounts.user_id = transaction_history.user_id';
+                    $sql = 'SELECT * FROM user_accounts';
                     if ($result = $conn->query($sql)) {
                         while ($row = $result->fetch_assoc()) {
-                            $transaction_id = $row["transaction_id"];
-                            $date_and_time = $row["date_and_time"];
+                            $user_id = $row["user_id"];
                             $username = $row["username"];
+                            $first_name = $row["first_name"];
+                            $last_name = $row["last_name"];
                             $email = $row["email"];
-                            $product_name = $row['product_name'];
-                            $paid_amount = $row["paid_amount"];
-                            $payment_method = $row["payment_method"];
-                            $status = $row["status"];
+                            $role = $row["role"];
 
                             echo '<tr>
-                    <td>' . $transaction_id . '</td>
-                    <td>' . $date_and_time . '</td>
+                    <td>' . $user_id . '</td>
                     <td>' . $username . '</td>
-                    <td>' . $email . '</td>  
-                    <td>' . $product_name . '</td> 
-                    <td>' . $paid_amount . '</td> 
-                    <td>' . $payment_method . '</td> 
-                    <td>' . $status . '</td> 
+                    <td>' . $first_name . '</td>
+                    <td>' . $last_name . '</td>
+                    <td>' . $email . '</td> 
+                    <td>' . $role . '</td> 
                     <td>
-                            <form action = "edit_transactions.php" method = "POST">
-                            <button class="btn btn-success" name = "transaction_id" value = "' . $transaction_id . '"> Edit </button>
+                            <form action = "edit_user_accounts.php" method = "POST">
+                            <button class="btn btn-success" name = "user_id" value = "' . $user_id . '"> Edit </button>
                             </form>
                     </td>
                         </tr>';
@@ -97,7 +90,6 @@
                         echo '<script>alert("0 Results Retrieved!")</script>';
                     }
                     ?>
-
                 <script>
                     $(document).ready(function () {
                         $("#search").on("keyup", function () {
