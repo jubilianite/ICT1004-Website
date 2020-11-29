@@ -142,3 +142,12 @@
 
     </body>
 </html>
+
+<?php
+//Logging
+date_default_timezone_set('Asia/Singapore');
+$date = date('Y-m-d H:i:s');
+$user = $_SESSION['username'];
+$data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully logged in with the IP address: " . $_SERVER['REMOTE_ADDR'];
+error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/access.log");
+?>

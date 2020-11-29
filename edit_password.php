@@ -122,6 +122,15 @@
 
                                 if (mysqli_query($conn, $sql1)) {
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
+
+                                    //Logging
+                                    date_default_timezone_set('Asia/Singapore');
+                                    $date = date('Y-m-d H:i:s');
+                                    $user = $_SESSION['username'];
+                                    $data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully changed her/her password! [" . $_SERVER['REMOTE_ADDR'] . "]";
+                                    error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/edit.log");
+
+
                                     header("refresh:0;url=edit_profile.php");
                                     header("Location: edit_profile.php");
                                 } else {
@@ -154,7 +163,7 @@
             </article>
 
             <!-- Footer -->
-<?php include "footer.inc.php"; ?>
+            <?php include "footer.inc.php"; ?>
 
         </div>
 

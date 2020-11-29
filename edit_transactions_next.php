@@ -23,6 +23,13 @@ if ($success == True) {
     if ($conn->query($sql1) === true) {
         echo '<script>alert("Transaction updated successfully. Redirecting you back...")</script>';
         header("refresh:0;url=transactions.php");
+
+        //Logging
+        date_default_timezone_set('Asia/Singapore');
+        $date = date('Y-m-d H:i:s');
+        $user = $_SESSION['username'];
+        $data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully edited TRANSACTION " . $transaction_id . "'s status" . " [" . $_SERVER['REMOTE_ADDR'] . "]";
+        error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/admin_edit.log");
     } else {
         echo '<script>alert("A Database Error occured.")</script>';
         echo '<script>history.back();</script>';

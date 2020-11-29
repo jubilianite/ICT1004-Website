@@ -188,6 +188,15 @@
                                 if (mysqli_query($conn, $sql1)) {
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
                                     header("refresh:0;url=login.php");
+                                    
+
+//Logging
+date_default_timezone_set('Asia/Singapore');
+$date = date('Y-m-d H:i:s');
+$user = $_SESSION['username'];
+$data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully reset her/her password! [" . $_SERVER['REMOTE_ADDR'] . "]";
+error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/edit.log");
+
                                 } else {
                                     $errorMsg2 .= "Database error: " . $conn->error;
                                     $errorMsg2 .= "Execute failed: (" . $sql1->errno . ") " . $sql1->error;

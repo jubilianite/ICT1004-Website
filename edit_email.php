@@ -110,6 +110,13 @@
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
                                     $_SESSION['email'] = $email;
                                     header("refresh:0;url=edit_profile.php");
+                                    
+                                    //Logging
+                                    date_default_timezone_set('Asia/Singapore');
+                                    $date = date('Y-m-d H:i:s');
+                                    $user = $_SESSION['username'];
+                                    $data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully changed her/her email! [" . $_SERVER['REMOTE_ADDR'] . "]";
+                                    error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/edit.log");
                                 } else {
                                     $errorMsg = "Database error: " . $conn->error;
                                     $errorMsg = "Execute failed: (" . $sql1->errno . ") " . $sql1->error;

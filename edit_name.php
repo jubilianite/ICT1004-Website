@@ -112,6 +112,12 @@
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
                                     $_SESSION['first_name'] = $first_name;
                                     $_SESSION['last_name'] = $last_name;
+                                    //Logging
+                                    date_default_timezone_set('Asia/Singapore');
+                                    $date = date('Y-m-d H:i:s');
+                                    $user = $_SESSION['username'];
+                                    $data = "\n" . $date . ": " . $user . " (" . $_SESSION['role'] . ") " . "has successfully changed her/her name! [" . $_SERVER['REMOTE_ADDR'] . "]";
+                                    error_log(print_r($data, true), 3, $_SERVER['DOCUMENT_ROOT'] . "/edit.log");
                                     header("refresh:0;url=edit_profile.php");
                                 } else {
                                     $errorMsg = "Database error: " . $conn->error;
