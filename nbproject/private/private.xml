@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/user_accounts.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_account.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/products.php</file>
+            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_user_accounts.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/if_admin.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/delete_products.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/payment_success.php</file>
@@ -12,7 +14,6 @@
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_products_next.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/header.inc.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/order_confirmation.php</file>
-            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/password_reset.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/signup_next.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/add_products.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/login.php</file>
@@ -21,18 +22,17 @@
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/videoediting.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_name.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_profile.php</file>
+            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/signup.php</file>
+            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_password.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/login_next.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/logout.php</file>
-            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/edit_name_1.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/forgot_password.php</file>
-            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/process.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/contact_next.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/add_products_next.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/if_loggedin.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/transaction_history.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/paypal_config.php</file>
             <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/contact.php</file>
-            <file>file:/D:/SIT/Y1T1/ICT1004%20-%20WebSystems/NetBeansProject/Project/adminpanel_process.php</file>
         </group>
     </open-files>
 </project-private>

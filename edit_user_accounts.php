@@ -76,9 +76,9 @@
                 <div class="form-group">
                     <label>Role</label>
                     <select class="form-control" id="role" name="role">
-                        <option value="" selected disabled hidden>Choose here</option>
+                        <!--<option value="" selected disabled hidden>Choose here</option>-->
                         <option>Member</option>
-                        <option>Admin</option>
+                        <!--<option>Admin</option>-->
                         <option>Banned</option>
                     </select>
                 </div>
