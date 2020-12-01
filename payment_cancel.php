@@ -4,6 +4,7 @@ header( "refresh:0;url=\index.php" );
 ?>
 <?php
 //Logging
+session_start();
 date_default_timezone_set('Asia/Singapore');
 $date = date('Y-m-d H:i:s');
 $user = $_SESSION['username'];
