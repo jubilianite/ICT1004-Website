@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
@@ -18,7 +18,7 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>                    
@@ -27,7 +27,7 @@
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <?php
                         $success = true;
                         $errorMsg = "";
@@ -121,7 +121,7 @@
                             echo '<script>alert("A Database Error occured.")</script>';
                             echo '<script>history.back();</script>';
                         } else if ($success == false) {
-                            echo "<h2><strong>Oops!</strong></h2>";
+                            echo "<h1><strong>Oops!</strong></h1>";
                             echo $errorMsg;
                             echo '<button onclick="history.go(-1);">BACK</button>';
                         } else if ($success == true) {
@@ -143,7 +143,7 @@
                                 //echo '<script>alert("Your Email or Username is wrong or non existent")</script>';
                                 //echo '<script>history.back();</script>';
                                 $success = false;
-                                echo "<h2><strong>Oops!</strong></h2>";
+                                echo "<h1><strong>Oops!</strong></h1>";
                                 echo $errorMsg;
                                 echo '<button onclick="history.go(-1);">BACK</button>';
                             }
@@ -157,7 +157,7 @@
                                 //echo '<script>alert("Your Email or Username is wrong or non existent")</script>';
                                 //echo '<script>history.back();</script>';
                                 $success = false;
-                                echo "<h2><strong>Oops!</strong></h2>";
+                                echo "<h1><strong>Oops!</strong></h1>";
                                 echo $errorMsg;
                                 echo '<button onclick="history.go(-1);">BACK</button>';
                             } else {
@@ -179,13 +179,14 @@
                                 $success = false;
                             }
                             if ($success == false) {
-                                echo "<h2><strong>Oops!</strong></h2>";
+                                echo "<h1><strong>Oops!</strong></h1>";
                                 echo $errorMsg;
                                 echo '<button onclick="history.go(-1);">BACK</button>';
                             } else if ($success == true) {
                                 $sql1 = "UPDATE user_accounts SET password='$hashed_password' WHERE username='$username'";
 
                                 if (mysqli_query($conn, $sql1)) {
+                                    echo "<h1><strong>Your details have been updated successfully.</strong></h1>";
                                     echo '<script>alert("Your details have been updated successfully.")</script>';
                                     header("refresh:0;url=login.php");
                                     

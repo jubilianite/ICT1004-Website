@@ -12,8 +12,8 @@
     </head>
     <body>
 
-        <div class="container">
-            <h2>BEST User Accounts</h2>
+        <div class="container" role="banner">
+            <h1>BEST User Accounts</h1>
             <p>Hello Admin, please update your user's details accordingly.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
@@ -47,49 +47,39 @@
             <form action="edit_user_accounts_next.php" method="post">
 
                 <input type="hidden" class="form-control" id="user_id"
-                       name="user_id" value="<?php echo $user_id; ?>">
+                       name="user_id" aria-label="User ID" value="<?php echo $user_id; ?>">
 
-                <div class="form-group">
+                <div class="form-group" role="main">
                     <label>Username</label>
                     <input readonly type="text" class="form-control" id="username"
-                           name="username" value="<?php echo $username; ?>">
-                </div>
+                           name="username" aria-label="Username" value="<?php echo $username; ?>">
 
-                <div class="form-group">
                     <label>First Name</label>
                     <input type="text" class="form-control" id="first_name"
-                           name="first_name" value="<?php echo $first_name; ?>">
-                </div>
+                           name="first_name" aria-label="First Name" value="<?php echo $first_name; ?>">
 
-                <div class="form-group">
                     <label>Last Name</label>
                     <input type="text" class="form-control" id="last_name"
-                           name="last_name" value="<?php echo $last_name; ?>">
-                </div>
+                           name="last_name" aria-label="Last Name" value="<?php echo $last_name; ?>">
 
-                <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" id="email"
-                           name="email" value="<?php echo $email; ?>">
-                </div>
+                           name="email" aria-label="Email" value="<?php echo $email; ?>">
 
-                <div class="form-group">
                     <label>Role</label>
-                    <select class="form-control" id="role" name="role">
+                    <select class="form-control" aria-label="Role" id="role" name="role">
                         <!--<option value="" selected disabled hidden>Choose here</option>-->
                         <option>Member</option>
                         <!--<option>Admin</option>-->
                         <option>Banned</option>
                     </select>
-                </div>
-
-                <div class="form-group">
+                    <br>
                     <button class="btn btn-success" value="submit" type="submit">Submit</button>
                 </div>
             </form>
-            <div class="form-group">
+
                 <a href="user_accounts.php"><button class="btn btn-primary">Back</button></a>
-            </div>
+
 
         </div>
 

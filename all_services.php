@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <?php include "if_loggedin.php"; ?>
+
     </head>
 
     <body class="index is-preload">
@@ -17,20 +17,20 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main" >
 
                 <header class="special container">
                     <span class="icon solid fa-film"></span>
-                    <h2>Professional Visual Services</h2>
+                    <h1>Professional Visual Services</h1>
                     <p>20 years of experience and counting...</p>
                 </header>
 
                 <section class="wrapper style4 container">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <section>
-                            <a href="#" class="image featured"><img src="images/visualservices.jpg" alt="" /></a>
+                            <a class="image featured"><img src="images/visualservices.jpg" alt="" /></a>
                         </section>
                     </div>
 
@@ -56,15 +56,15 @@
 
                             while ($sql->fetch()) {
                                 echo '<div class="col-4 col-12-narrower"><section>'; //Declare Header of DIV
-                                echo '<header><h3><strong>' . $product_name . '</strong></h3></header>';
+                                echo '<header><h2><strong>' . $product_name . '</strong></h2></header>';
                                 echo '<p>' . $description . '</p>';
-                                echo '<footer><form action="order_confirmation.php" method="post">';
+                                echo '<form action="order_confirmation.php" method="post">';
                                 echo '<input type="hidden" name="product_id" value="' . $product_id . '">';
                                 echo '<input type="hidden" name="product_name" value="' . $product_name . '">';
                                 echo '<input type="hidden" name="product_price" value="' . $product_price . '">';
                                 echo '<input type="hidden" name="description" value="' . $description . '">';
                                 echo '<ul class="buttons"><li><button class="buttons" type="submit">$' . $product_price . '</button></li></ul>';
-                                echo '</form></footer>';
+                                echo '</form>';
                                 echo '</section></div>';
                             }
                         }

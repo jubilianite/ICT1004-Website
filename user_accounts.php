@@ -27,8 +27,8 @@
     </style>
     <body>
 
-        <div class="container">
-            <h2>BEST User Accounts</h2>
+        <div class="container" role="main">
+            <h1>BEST User Accounts</h1>
             <p>Hello Admin, here are the list of your registered users.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
@@ -44,7 +44,7 @@
 
             <!-- Search Bar -->
             <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-                <input class="form-control" id="search" type="text" placeholder="Search here"> 
+                <input class="form-control" id="search" aria-label="Search" type="text" placeholder="Search here"> 
             </div>
             <br>
 
@@ -62,7 +62,7 @@
                 </thead>
                 <tbody id="table">
                     <?php
-                    $sql = 'SELECT * FROM user_accounts';
+                    $sql = 'SELECT * FROM user_accounts WHERE role ="Member" OR role ="Banned" ';
                     if ($result = $conn->query($sql)) {
                         while ($row = $result->fetch_assoc()) {
                             $user_id = $row["user_id"];

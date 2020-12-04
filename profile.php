@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
@@ -18,18 +18,18 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h2>
+                    <h1><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h1>
 
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <?php
                         $config = parse_ini_file('./../private/dbconfig.ini');
                         $conn = new mysqli($config['dbservername'], $config['dbusername'], $config['dbpassword'], $config['dbname']);

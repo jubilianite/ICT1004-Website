@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <?php include "if_loggedin.php"; ?>
+
     </head>
 
     <body class="index is-preload">
@@ -17,22 +17,22 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main"  >
 
-                <header class="special container">
+                <header class="special container" >
                     <span class="icon solid fa-film"></span>
-                    <h2>Professional Video Editing, Animation and Post Production Service</h2>
+                    <h1>Professional Video Editing, Animation and Post Production Service</h1>
                     <p>20 years of experience and counting...</p>
                 </header>
 
-                <section class="wrapper style4 container">
+                <section class="wrapper style4 container" >
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <section>
-                            <a href="#" class="image featured"><img src="images/videoediting.jpg" alt="" /></a>
+                            <a class="image featured"><img src="images/videoediting.jpg" alt="" /></a>
                             <header>
-                                <h3>About this Service</h3>
+                                <h2>About this Service</h2>
                             </header>
                             <p>We'll professionally edit your video to any requirements and upload your video to full resolution at either; 1080p (FHD), 2K, or 4K.</p>
                             <p>We edit in Premiere Pro, After Effects, Photoshop and DaVinci Resolve, so can cover any requirements you request in regards to the video you require editing or animating.</p>

@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
@@ -24,25 +24,25 @@
             }
             ?>
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main" >
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>Login</h2>
+                    <h1>Login</h1>
                     <p>Not a member with us yet? Head to the <a href="signup.php">Sign Up </a>page now!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <form action="login_next.php" method="post">
                             <div class="row gtr-50">
                                 <div class="col-12">
-                                    <input type="text" name="username" id="username" placeholder="Username" />
+                                    <input type="text" name="username" id="username" aria-label="Username" placeholder="Username" />
                                 </div>
                                 <div class="col-12">
-                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Password" />
+                                    <input type="password" name="password" required minlength="8" id="password" aria-label="Password" placeholder="Password" />
                                 </div>
                                 <div class="col-12">
                                     <div class="g-recaptcha" data-sitekey="6Lc8AOIZAAAAAOUMKBhtV-CYeXzClOVWcOElqP_s">

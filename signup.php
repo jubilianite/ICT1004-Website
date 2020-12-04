@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
@@ -17,53 +17,53 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>SIGN UP</h2>
+                    <h1>SIGN UP</h1>
                 <p>Already a member with us? Head to the <a href="login.php">Login </a>page now!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <form action="signup_next.php" method="post">
                             <div class="row gtr-50">
                                 <strong>Username:</strong>
                                 <div class="col-12">
-                                    <input type="text" required name="username" id="username" placeholder="This must be unique" />
+                                    <input type="text" required name="username" aria-label="Username" id="username" placeholder="This must be unique" />
                                     <br>
                                 </div>
                                 
                                 <strong>Email:</strong>
                                 <div class="col-12">
-                                    <input type="email" required name="email" id="email" placeholder="Your email" />
+                                    <input type="email" required name="email" aria-label="Email" id="email" placeholder="Your email" />
                                     <br>
                                 </div>
                                 
                                 <strong>First Name:</strong>
                                 <div class="col-12">
-                                    <input type="text" name="first_name" id="first_name" placeholder="Your first name (If you have one)" />
+                                    <input type="text" name="first_name" aria-label="First Name" id="first_name" placeholder="Your first name (If you have one)" />
                                     <br>
                                 </div>
                                 
                                 <strong>Last Name:</strong>
                                 <div class="col-12">
-                                    <input type="text" required name="last_name" id="last_name" placeholder="Your last name (Required)" />
+                                    <input type="text" required name="last_name" aria-label="Last Name" id="last_name" placeholder="Your last name (Required)" />
                                     <br>
                                 </div>
                                 
                                 <strong>Password:</strong>
                                 <div class="col-12">
-                                    <input type="password" name="password" required minlength="8" id="password" placeholder="Your password" />
+                                    <input type="password" name="password" aria-label="Password" required minlength="8" id="password" placeholder="Your password" />
                                     <br>
                                 </div>
 
                                 <strong>Confirm Password:</strong>
                                 <div class="col-12">
-                                    <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm your password" />
+                                    <input type="password" name="confirm_password" aria-label="Confirm Password" required minlength="8" id="confirm_password" placeholder="Confirm your password" />
                                 </div>                                
                                 <p>Your password must have at least 8 characters with at least one alphabet and one number.</p>
                                 

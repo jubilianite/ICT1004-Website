@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
@@ -11,11 +11,11 @@
     <body class="index is-preload">
         <div id="page-wrapper">
             <?php include "header.inc.php"; ?> 
-            <article id="main">
+            <article id="main" role="main">
                 
                                 <header class="special container">
                     <span class="icon solid fa-envelope"></span>
-                    <h2>Get In Touch</h2>
+                    <h1>Get In Touch</h1>
                     <p>Want to get in touch? We'd love to hear from you. Here's how you can reach us...</p>
                 </header>
                 <section class="wrapper style4 special container medium">
@@ -104,12 +104,12 @@
                             echo "<p>Your Email: " . $email . "</p>";
                             //echo '<button onclick="history.go(-1);">BACK</button>';
                             //echo '<button onclick=<a href="index.php"</a>">BACK</button>';
-                            echo '<ul class="buttons"><li><a href="index.php" type="submit" class="special">Home</a></li></ul>';
+                            echo '<ul class="buttons"><li><a href="index.php" type="submit" class="button">Home</a></li></ul>';
                         } else {
-                            echo "<h1> Oops!</h1>";
-                            echo "<h4>An error has occured :</h4>";
+                            echo "<h2> Oops!</h2>";
+                            echo "<h3>An error has occured :</h3>";
                             echo "<p>" . $errorMsg . "</p>";
-                            echo '<ul class="buttons"><li><a href="contact.php" type="submit" class="special">Contact Us Again</a></li></ul>';
+                            echo '<ul class="buttons"><li><a href="contact.php" type="submit" class="button">Contact Us Again</a></li></ul>';
                         }
                         ?>
                     </div>    

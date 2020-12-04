@@ -12,36 +12,31 @@
     </head>
     <body>
 
-        <div class="container">
-            <h2>BEST Products & Services</h2>
+        <div class="container" role="banner">
+            <h1>BEST Products & Services</h1>
             <p>Hello Admin, please key in the details for your new product/service.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
 
             <form action="add_products_next.php" method="post">
-                <div class="form-group">
+                <div class="form-group" role="main">
                     <label>Product Name</label>
                     <input type="text" class="form-control" id="productN"
-                           name="productN" placeholder="Product Name">
-                </div>
-
-                <div class="form-group">
+                           name="productN" aria-label="Product Name" placeholder="Product Name">
+                    
                     <label>Product Price</label>
                     <input type="number" class="form-control" id="productP"
-                           name="productP" placeholder="$$$">
-                </div>
+                           name="productP" aria-label="Product Price" placeholder="$$$">
 
-                <div class="form-group">
                     <label>Description</label>
                     <textarea class="form-control" id="productD"
-                              name="productD" rows="3"></textarea>
-                </div>
-                <div class="form-group">
+                              name="productD" aria-label="Product Description"rows="3"></textarea>
+                    <br>
                     <button class="btn btn-success" type="submit">Submit</button>
                 </div>
             </form>
-            <div class="form-group">
+
                 <a href="products.php"><button class="btn btn-primary">Back</button></a>
-            </div>
+
 
         </div>
 

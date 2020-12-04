@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <?php include "if_loggedin.php"; ?>
+
     </head>
 
     <body class="index is-preload">
@@ -17,22 +17,22 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main"  >
 
-                <header class="special container">
+                <header class="special container" >
                     <span class="icon solid fa-film"></span>
-                    <h2>Professional Logo Design Service</h2>
+                    <h1>Professional Video Editing, Animation and Post Production Service</h1>
                     <p>20 years of experience and counting...</p>
                 </header>
 
-                <section class="wrapper style4 container">
+                <section class="wrapper style4 container" >
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <section>
-                            <a><img style="width: 100%" src="images/logodesign.jpg" alt="" /></a>
+                            <a class="image featured"><img src="images/videoediting.jpg" alt="" /></a>
                             <header>
-                                <h3>About this Service</h3>
+                                <h2>About this Service</h2>
                             </header>
                             <p>We are a highly talented and dedicated team, focused on providing unique logo design absolutely from scratch. </p>
                             <p>A Logo is the face of your brand which is as equally important as the success of your business and we make sure to dig the pillars of your success from depth.</p>

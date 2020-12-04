@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script src="https://www.google.com/recaptcha/api.js" async defer ></script>
@@ -24,18 +24,18 @@
             ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>Login</h2>
+                    <h1>Login</h1>
                     <p>Not a member with us yet? Head to the <a href="signup.php">Sign Up </a>page now!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <?php
                         $success = false; //By default: false   
                         $errorMsg = ""; //By default: Empty
@@ -72,7 +72,7 @@
                                         $errorMsg .= "User not found or password doesn't match...";
                                         $success = false;
                                     } else {
-                                        echo "<h4>Password login accepted. Redirecting you to our home page...</h4>";
+                                        echo "<h2>Password login accepted. Redirecting you to our home page...</h2>";
                                         $_SESSION['first_name'] = $row['first_name'];
                                         $_SESSION['last_name'] = $row['last_name'];
                                         $_SESSION['email'] = $row['email'];

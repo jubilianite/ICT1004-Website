@@ -27,8 +27,8 @@
     </style>
     <body>
 
-        <div class="container">
-            <h2>BEST Transactions</h2>
+        <div class="container" role="main">
+            <h1>BEST Transactions</h1>
             <p>Hello Admin, here your transactions.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
@@ -43,7 +43,7 @@
 
             <!-- Search Bar -->
             <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-                <input class="form-control" id="search" type="text" placeholder="Search here"> 
+                <input class="form-control" id="search" aria-label="Search" type="text" placeholder="Search here"> 
             </div>
             <br>
 

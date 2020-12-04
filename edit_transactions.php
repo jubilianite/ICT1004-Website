@@ -12,8 +12,8 @@
     </head>
     <body>
 
-        <div class="container">
-            <h2>BEST Transactions</h2>
+        <div class="container" role="banner">
+            <h1>BEST Transactions</h1>
             <p>Hello Admin, please update your transaction details accordingly.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
@@ -50,55 +50,46 @@
                 <input type="hidden" class="form-control" id="ProductID"
                        name="ProductID" value="<?php echo $product_id; ?>">
 
-                <div class="form-group">
+                <div class="form-group" role="main">
                     <label>Transaction ID</label>
                     <input readonly type="text" class="form-control" id="transaction_id"
-                           name="transaction_id" value="<?php echo $transaction_id; ?>">
-                </div>
-                <div class="form-group">
+                           name="transaction_id" aria-label="ID" value="<?php echo $transaction_id; ?>">
+
                     <label>Date & Time</label>
                     <input readonly type="text" class="form-control" id="date_and_time"
-                           name="date_and_time" value="<?php echo $date_and_time; ?>">
-                </div>
-                <div class="form-group">
+                           name="date_and_time" aria-label="Date and Time" value="<?php echo $date_and_time; ?>">
+
                     <label>Username</label>
                     <input readonly type="text" class="form-control" id="username"
-                           name="username" value="<?php echo $username; ?>">
-                </div>
-                <div class="form-group">
+                           name="username" aria-label="Username" value="<?php echo $username; ?>">
+
                     <label>Product Name</label>
                     <input readonly type="text" class="form-control" id="product_name"
-                           name="product_name" value="<?php echo $product_name; ?>">
-                </div>
-                <div class="form-group">
+                           name="product_name" aria-label="Product Name" value="<?php echo $product_name; ?>">
+
                     <label>Paid Amount (SGD)</label>
                     <input readonly type="text" class="form-control" id="paid_amount"
-                           name="paid_amount" value="<?php echo $paid_amount; ?>">
-                </div>
-                <div class="form-group">
+                           name="paid_amount" aria-label="Paid Amount" value="<?php echo $paid_amount; ?>">
+
                     <label>Payment Method</label>
                     <input readonly type="text" class="form-control" id="payment_method"
-                           name="payment_method" value="<?php echo $payment_method; ?>">
-                </div>
-                <div class="form-group">
+                           name="payment_method" aria-label="Payment Method" value="<?php echo $payment_method; ?>">
+
                     <label>Status</label>
-                    <select class="form-control" id="status" name="status">
+                    <select class="form-control" id="status" aria-label="Status" name="status">
                         <option>In Progress</option>
                         <option>Completed/Delivered</option>
                         <option>Refunded</option>
                         <option>Exchanged</option>
                         <option>Others</option>
                     </select>
-                </div>
-
-
-                <div class="form-group">
+                    <br>
                     <button class="btn btn-success" value="submit" type="submit">Submit</button>
                 </div>
             </form>
-            <div class="form-group">
+
                 <a href="transactions.php"><button class="btn btn-primary">Back</button></a>
-            </div>
+
 
         </div>
 

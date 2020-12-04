@@ -28,7 +28,7 @@
     <body>
 
         <div class="container">
-            <h2>BEST Products & Services</h2>
+            <h1>BEST Products & Services</h1>
             <p>Hello Admin, here are the list of your products.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <a class="btn btn-primary" href="add_products.php" role="button">Add Products</a>
@@ -45,7 +45,7 @@
 
             <!-- Search Bar -->
             <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-                <input class="form-control" id="search" type="text" placeholder="Search here"> 
+                <input class="form-control" id="search" aria-label="Search" type="text" placeholder="Search here"> 
             </div>
             <br>
 

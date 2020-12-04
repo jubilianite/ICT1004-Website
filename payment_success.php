@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <?php include "if_loggedin.php"; ?>
@@ -17,18 +17,18 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-heart"></span>
-                    <h2>THANK YOU!</h2>
+                    <h1>THANK YOU!</h1>
                     <p>We have received your payment. We will contact you via your registered email soon to discuss about the specific requirements!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1"> 
                         <?php
                         $transaction_id = $_REQUEST['tx']; // Paypal Transaction ID
                         $price = $_REQUEST['amt']; // Paypal Received Amount
@@ -54,10 +54,10 @@
                         } else {
                             // Execute the query
                             if ($stmt->execute()) {
-                                echo "<h3><strong>Transaction ID: </strong>" . $transaction_id . "</h3>";
-                                echo "<h3><strong>Product/Service: </strong>" . $item_name . "</h3>";
-                                echo "<h3><strong>Date & Time: </strong>" . $date . "</h3>";
-                                echo "<h3><strong>Amount Paid: </strong>" . $price . " " . $currency . "</h3>";
+                                echo "<p><strong>Transaction ID: </strong>" . $transaction_id . "</p>";
+                                echo "<p><strong>Product/Service: </strong>" . $item_name . "</p>";
+                                echo "<p><strong>Date & Time: </strong>" . $date . "</p>";
+                                echo "<p><strong>Amount Paid: </strong>" . $price . " " . $currency . "</p>";
                             } else {
                                 //$errorMsg .= "Database error: " . $conn->error . "<br/>";
                                 //$errorMsg .= "Execute failed: " . $conn->errno . "<br/>";

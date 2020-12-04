@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <?php include "if_loggedin.php"; ?>
@@ -17,17 +17,17 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-envelope"></span>
-                    <h2><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h2>
+                    <h1><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h1>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <form action= "" method="post">
                             <?php
                             $config = parse_ini_file('./../private/dbconfig.ini');
@@ -46,11 +46,11 @@
 
                                 <div class="col-6 col-12-mobile">
                                     <strong>First Name:</strong>
-                                    <input type="text" name="first_name" value="<?php echo $row['first_name']; ?>" />
+                                    <input type="text" name="first_name" aria-label="First Name" value="<?php echo $row['first_name']; ?>" />
                                 </div>
                                 <div class="col-6 col-12-mobile">
                                     <strong>Last Name:</strong>
-                                    <input type="text" name="last_name" required  value="<?php echo $row['last_name']; ?>"/>
+                                    <input type="text" name="last_name" aria-label="Last Name" required  value="<?php echo $row['last_name']; ?>"/>
                                 </div>
 
                                 <div class="col-12">

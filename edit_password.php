@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <?php include "if_loggedin.php"; ?>
@@ -17,17 +17,17 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-envelope"></span>
-                    <h2><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h2>
+                    <h1><?php echo $_SESSION['username'] . "'s Profile Page"; ?></h1>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <form action= "" method="post">
                             <?php
                             $config = parse_ini_file('./../private/dbconfig.ini');
@@ -46,11 +46,11 @@
 
                                 <div class="col-6 col-12-mobile">
                                     <strong>New Password:</strong>
-                                    <input type="password" name="password" required minlength="8" id="password" placeholder="New Password" />
+                                    <input type="password" name="password" aria-label="Password" required minlength="8" id="password" placeholder="New Password" />
                                 </div>
                                 <div class="col-6 col-12-mobile">
                                     <strong>Confirm New Password:</strong>
-                                    <input type="password" name="confirm_password" required minlength="8" id="confirm_password" placeholder="Confirm New Password"/>
+                                    <input type="password" name="confirm_password" aria-label="Confirm Password" required minlength="8" id="confirm_password" placeholder="Confirm New Password"/>
                                 </div>
                                 <p>Your password must have at least 8 characters with at least one alphabet and one number.</p>
                                 <div class="col-12">

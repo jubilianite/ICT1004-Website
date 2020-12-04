@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>BEST</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     </head>
@@ -16,18 +16,18 @@
             <?php include "header.inc.php"; ?>
 
             <!-- Main -->
-            <article id="main">
+            <article id="main" role="main">
 
                 <header class="special container">
                     <span class="icon solid fa-user-alt"></span>
-                    <h2>SIGN UP</h2>
+                    <h1>SIGN UP</h1>
                     <p>Already a member with us? Head to the <a href="login.php">Login </a>page now!</p>
                 </header>
 
                 <section class="wrapper style4 special container medium">
 
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content" aria-level="1">
                         <?php
                         $success = true; //By default: false   
                         $errorMsg = ""; //By default: Empty
@@ -178,7 +178,7 @@
                         saveMemberToDB();
 
                         if ($success == true) {
-                            echo "<h4>Thank you for signing up, " . $first_name . "</h4>";
+                            echo "<h2>Thank you for signing up, " . $first_name . "</h2>";
                             echo "<p>Your username is: " . $username . "</p>";
                             echo '<a href="login.php" class="button">Login</a>';
                         } else if ($success == false) {

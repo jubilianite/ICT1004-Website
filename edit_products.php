@@ -12,8 +12,8 @@
     </head>
     <body>
 
-        <div class="container">
-            <h2>BEST Products & Services</h2>
+        <div class="container" role="banner">
+            <h1>BEST Products & Services</h1>
             <p>Hello Admin, please update your product details accordingly.</p>
             <a class="btn btn-success" href="index.php" role="button">Return to Homepage</a>
             <p></p>
@@ -44,33 +44,27 @@
 
             <form action="edit_products_next.php" method="post">
                 
-                    <input type="hidden" class="form-control" id="ProductID"
+                    <input type="hidden" aria-label="Product ID" class="form-control" id="ProductID"
                            name="ProductID" value="<?php echo $product_id; ?>">
 
-                <div class="form-group">
+                <div class="form-group" role="main">
                     <label>Product Name</label>
                     <input type="text" class="form-control" id="ProductName"
-                           name="ProductName" value="<?php echo $product_name; ?>">
-                </div>
+                           name="ProductName" aria-label="Product Name" value="<?php echo $product_name; ?>">
 
-                <div class="form-group">
                     <label>Product Price</label>
-                    <input type="number" class="form-control" id="ProductPrice" 
-                           name="ProductPrice" value="<?php echo $product_price; ?>">
-                </div>
+                    <input type="number" class="form-control" id="ProductPrice" name="ProductPrice" aria-label="Product Price" value="<?php echo $product_price; ?>">
 
-                <div class="form-group">
                     <label>Description</label>
                     <textarea class="form-control" id="ProductDescription"
-                              name="ProductDescription" rows="3"><?php echo $description; ?></textarea>
-                </div>
-                <div class="form-group">
+                              name="ProductDescription" aria-label="Description" rows="3"><?php echo $description; ?></textarea>
+                    <br>
                     <button class="btn btn-success" value="submit" type="submit">Submit</button>
                 </div>
             </form>
-            <div class="form-group">
+
                 <a href="products.php"><button class="btn btn-primary">Back</button></a>
-            </div>
+
 
         </div>
 
