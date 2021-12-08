@@ -1,4 +1,4 @@
-# BEST
+# ICT1004 - Website
 For this project, the team members have created a website for a non-existent company called ‘BEST’ that allow users to engage and make payment for visual services by ‘BEST’. 
 
 ## Contributors
